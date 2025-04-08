@@ -14,7 +14,7 @@ document.getElementById("fb-share").addEventListener("click", function (e) {
     e.preventDefault();
 
     const puntuacion = document.getElementById("puntuacion").textContent || "0 puntos";
-    const resultadoURL = window.location.href;
+    const resultadoURL = "https://razielleal.github.io/results.html";
 
     const mensaje = `¡Esta es mi nueva puntuación, únete y compite contra mí! 🏁 Mi puntuación: ${puntuacion}`;
     
