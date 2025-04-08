@@ -16,7 +16,7 @@ document.getElementById("fb-share").addEventListener("click", function (e) {
     const puntuacion = document.getElementById("puntuacion").textContent || "0 puntos";
     const resultadoURL = "https://razielleal.github.io/results.html";
 
-    const mensaje = `¡Esta es mi nueva puntuación, únete y compite contra mí! 🏁 Mi puntuación: ${puntuacion}`;
+    const mensaje = '¡Esta es mi nueva puntuación, únete y compite contra mí! 🏁;'
     
     const facebookShareURL = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(resultadoURL)}&quote=${encodeURIComponent(mensaje)}`;
 
