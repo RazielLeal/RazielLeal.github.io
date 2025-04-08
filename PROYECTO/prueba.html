@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Three.js GLTF Loader</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+<div id = sceneCanvas>
+
+</div>
+<script type="module">
+    import * as THREE from './JS/three.module.js';
+    import { GLTFLoader } from './JS/GLTFLoader.js';
+    import { OrbitControls } from './JS/OrbitControls.js';
+
+    // Escena básica
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    // Control de cámara
+    const controls = new OrbitControls(camera, renderer.domElement);
+
+    // Iluminación
+    const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
+    scene.add(light);
+
+    // Posición de la cámara
+    camera.position.set(0, 1.5, 3);
+    controls.update();
+
+    // Cargar modelo
+    const loader = new GLTFLoader();
+    loader.load('./models/mustang.glb', function (gltf) {
+      scene.add(gltf.scene);
+    }, undefined, function (error) {
+      console.error(error);
+    });
+
+    // Animación
+    function animate() {
+      requestAnimationFrame(animate);
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+</script>
+</body>
+</html>

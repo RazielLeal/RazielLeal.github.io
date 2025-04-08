@@ -1,0 +1,11 @@
+icono de pausa 
+<div> Iconos diseñados por <a href="https://www.flaticon.es/autores/slidicon" title="Slidicon"> Slidicon </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div>
+
+icono de play 
+<a href="https://www.flaticon.es/iconos-gratis/boton-de-play" title="botón de play iconos">Botón de play iconos creados por Pixel perfect - Flaticon</a>
+
+icono de ajustes 
+<div> Iconos diseñados por <a href="https://www.flaticon.es/autores/pixel-perfect" title="Pixel perfect"> Pixel perfect </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div>
+
+icono de salida 
+<div> Iconos diseñados por <a href="https://www.flaticon.es/autores/pixel-perfect" title="Pixel perfect"> Pixel perfect </a> from <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.es'</a></div>
