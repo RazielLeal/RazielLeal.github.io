@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Pista - Juego de Carreras</title>
+    <link rel="stylesheet" href="CSS/road.css">
+    <link rel="stylesheet" href="CSS/general.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Selecciona tu Pista</h1>
+        </header>
+        <main>
+            <div class="track-options">
+                <div class="track" id = "track1">
+                    <!-- <canvas id="track1-canva"></canvas> -->
+                    <img src="CSS/IMG/mapa1.png" alt="Pista 1" onclick="location.href='game.html'">
+                </div>
+                <div class="track" id = "track2">
+                    <!-- <canvas id="track2-canva"></canvas> -->
+                    <img src="CSS/IMG/mapa2.png" alt="Pista 2" onclick="location.href='game.html'">
+                </div>
+                <div class="track" id = "track3">
+                    <!-- <canvas id="track3-canva"></canvas> -->
+                    <img src="CSS/IMG/mapa3.png" alt="Pista 3" onclick="location.href='game.html'">
+                </div>
+            </div>
+        </main>
+        <footer>
+            <button class="btn" onclick="location.href='car.html'">Regresar</button>
+        </footer>
+    </div>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <script type = "module" src = "JS/road-selection.js"></script> -->
+</body>
+</html>

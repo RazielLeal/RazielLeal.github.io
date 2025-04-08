@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selección de Vehículo - Juego de Carreras</title>
+    <link rel="stylesheet" href="CSS/car.css">
+    <link rel="stylesheet" href="CSS/general.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Selecciona tu Vehículo</h1>
+        </header>
+        <main>
+            <div class="vehicle-options">
+                <div class="vehicle" id = "GT350-container">
+                    <canvas id="GT350-canvas"></canvas>
+                    <!-- <img src="CSS/IMG/Carro.png" alt="Vehículo 1" onclick="location.href='road.html'"> -->
+                </div>
+                <div class="vehicle" id = "SN95-container">
+                    <canvas id="SN95-canvas"></canvas>
+                    <!-- <img src="CSS/IMG/Carro.png" alt="Vehículo 2" onclick="location.href='road.html'"> -->
+                </div>
+                <div class="vehicle" id = "GT500-container">
+                    <canvas id="GT500-canvas"></canvas>
+                    <!-- <img src="CSS/IMG/Carro.png" alt="Vehículo 3" onclick="location.href='road.html'"> -->
+                </div>
+            </div>
+        </main>
+        <footer>
+            <button class="btn" onclick="location.href='index.html'">Regresar</button>
+        </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <script type = "module" src = "JS/car-selection.js"></script>
+
+</body>
+</html>

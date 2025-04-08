@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Carrera - Juego de Carreras</title>
+    <link rel="stylesheet" href="CSS/game.css">
+    <link rel="stylesheet" href="CSS/general.css">
+</head>
+<body>
+    <div class="race-container">
+        <header class = "header-container">
+            <h1 class = "header-text">En Carrera</h1>  
+            <div class = "btn-container">
+                <button class="btn" onclick="location.href='car.html'"><img src = "CSS/IMG/exit-icon.png"></button>
+                <button class="btn" onclick="location.href='stop.html'"><img src = "CSS/IMG/pause-icon.png"></button>
+            </div>   
+            </header>
+        <main>
+            <div class="dashboard">
+                <div class="map" style = "position: relative    ;">
+                    <img src="CSS/IMG/preview-map.png" alt="Mapa de la pista">
+
+                    <canvas id="miCanvas3D" style="position: absolute;"></canvas>
+                </div>
+                <div class="speedometer">
+                    <p>Velocidad: <span id="speed">120</span> km/h</p>
+                </div>
+                <div class="position">
+                    <p>Posición: <span id="position">1</span>/<span id="total-players">8</span></p>
+                </div>
+            </div>
+        </main>
+        <!-- <footer>
+            <button class="btn" onclick="location.href='car.html'">Salir</button>
+            <button class="btn" onclick="location.href='stop.html'">Pausa</button>
+        </footer> -->
+    </div>
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src = "https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>
+    
+    <script type = "module" src = "JS/in-game.js"></script> -->
+    
+</body>
+
+</html>
