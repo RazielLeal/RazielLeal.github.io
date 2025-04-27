@@ -4,15 +4,20 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modelos</title>
+  <link rel = "stylesheet" href = "../CSS/game.css">
   <style>
-    body {
-      margin: 0;
-      overflow: hidden;
+    body{
+      margin: 0; 
     }
   </style>
 </head>
 <body>
-  
+  <header class = "header-container">
+    <div class = "btn-container">
+        <button class="btn" onclick="location.href='../car.html'"><img src = "../CSS/IMG/exit-icon.png"></button>
+        <button class="btn" onclick="location.href='../stop.html'"><img src = "../CSS/IMG/pause-icon.png"></button>
+    </div>   
+  </header> 
 
   <script type="module">
     import * as THREE from "./three.module.js";
@@ -184,4 +189,3 @@
   </script>
 </body>
 </html>
-s
