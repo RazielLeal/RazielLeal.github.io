@@ -1,4 +1,6 @@
-
+import * as THREE from "../game/three.module.js";
+import { GLTFLoader} from "../game/GLTFLoader.js"; 
+        
 function loadCarModel(containerId, modelPath) {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(20, 1, 0.1, 1000);
@@ -10,20 +12,20 @@ function loadCarModel(containerId, modelPath) {
     light.position.set(5, 5, 5);  // Posición de la luz
     scene.add(light);
 
-    const loader = new THREE.GLTFLoader();
+    const loader = new GLTFLoader();
     loader.load(modelPath, function(gltf) {
         const model = gltf.scene;
         scene.add(model);
         model.scale.set(1, 1, 1);
         model.rotation.y = -2*Math.PI/180;
         model.position.x = .2;
-
-         function animate() {
-               requestAnimationFrame(animate);
-               model.rotation.y += 0.01; 
-               renderer.render(scene, camera);
-         }
-         animate();
+        
+        function animate() {
+            requestAnimationFrame(animate);
+            model.rotation.y += 0.01; 
+            renderer.render(scene, camera);
+        }
+        animate();
         // renderer.render(scene, camera);
         
     });
@@ -38,4 +40,4 @@ function loadCarModel(containerId, modelPath) {
 
 loadCarModel("GT350-canvas", "CSS/3D/skyline.glb");
 loadCarModel("SN95-canvas", "CSS/3D/toyota-supra.glb");
-loadCarModel("GT500-canvas", "CSS/3D/toyota-chaser.glb");
+loadCarModel("GT500-canvas", "CSS/3D/toyota-chaser.glb");        
