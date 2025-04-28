@@ -54,7 +54,7 @@
     let toyotaSpeed = 0; // velocidad del Toyota
     let collision = false; // nueva variable de colisión
 
-    let toyota; // para guardar el modelo del Toyota
+    let toyota; 
     const loaderGLTF = new GLTFLoader();
     loaderGLTF.load(
       "./3D/toyota-chaser.glb",
@@ -74,10 +74,25 @@
       function (model) {
         city = model.scene;
         city.scale.set(.012, .012, .012);
-        city.position.set(85, 0, 65);
+        city.position.set(85, 0, 100);
         scene.add(city);
       }
     );
+
+    let Skydome;
+    const loaderSkydome = new GLTFLoader();
+    loaderGLTF.load(
+      "./3D/Sky.glb",
+      function (model) {
+        Skydome = model.scene;
+        Skydome.scale.set(1, 1, 1);
+        Skydome.position.set(0, 0, 0);
+        scene.add(Skydome);
+      }
+    );
+
+
+
 
     let mixerMujer;
     const loaderMujer = new GLTFLoader();
@@ -168,6 +183,11 @@
     const turnSpeed = 0.03;
 
     function animate() {
+      if (Skydome) {
+        Skydome.rotation.y += 0.001;       
+      }
+
+
       if (mixerMujer) mixerMujer.update(0.02);
       
       if (mixerWoman) mixerWoman.update(0.02);
