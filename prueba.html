@@ -1,61 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Three.js GLTF Loader</title>
-  <style>
-    body { margin: 0; overflow: hidden; }
-    canvas { display: block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantalla de Inicio - Juego de Carreras</title>
+    <link rel="stylesheet" href="CSS/menu.css">
+    <link rel="stylesheet" href="CSS/general.css">
 </head>
 <body>
-<div id = sceneCanvas>
+    <script>
+        // Inicialización del SDK de Facebook
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '2556967021316908',
+                xfbml: true,
+                version: 'v22.0'
+            });
 
-</div>
-<script type="module">
-    import * as THREE from './JS/three.module.js';
-    import { GLTFLoader } from './JS/GLTFLoader.js';
-    import { OrbitControls } from './JS/OrbitControls.js';
+            // Llamada a la API para obtener publicaciones
+            FB.api('1872926253492113/posts', 'GET',
+            {
+                access_token: "EAAkVjEcCCywBO7ysS5m26NfxMnOb0PbRCPIE5pGZCYaPiiNKCwZArgyMNoNGW1RanQpxQ1RZBcMKKhNHNVk13QmfhzScxmnQS7ZAvF4ef1eWMpTtlfocOj6p0enu5ttx0fxwtPUeUS9pycQSbizQsZC0T3n9AGgaKUxu2GeoRnRZC10qhgBEAManXn3BqcaXiZB5PvUjmJG0dib5XIh7c2YLSZBvOGvI4G9SBPiZBowVJg4BCCmGpcZCsc"
+            },
+            function(response) {
+                if (response && !response.error)
+                  {
+                    console.log(response); // Verifica los datos en la consola
+                    const postsBody = document.getElementById('postsBody'); // Selecciona el tbody
 
-    // Escena básica
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({antialias: true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+                    // Itera sobre las publicaciones para rellenar la tabla
+                    response.data.forEach((post, index) => 
+                    {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            
+                            <td>${post.message || 'Sin mensaje'}</td>
+                            <td>${new Date(post.created_time).toLocaleString()}</td>
+                        `;
+                        postsBody.appendChild(row); // Agrega la fila
+                        // if(post.message){
+                        //   postsBody.appendChild(row); // Agrega la fila
+                        // }else{
+                        //   //NO HACE NADA
+                        // }
+                    });
 
-    // Control de cámara
-    const controls = new OrbitControls(camera, renderer.domElement);
+                } else 
+                  {
+                    console.error("Error al obtener las publicaciones:", response.error);
+                  }
+            });
+        };
+    </script>
 
-    // Iluminación
-    const light = new THREE.HemisphereLight(0xffffff, 0x444444, 1);
-    scene.add(light);
+    <!-- Carga del SDK de Facebook -->
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
 
-    // Posición de la cámara
-    camera.position.set(0, 1.5, 3);
-    controls.update();
+    <div class="container">
+        <div class="containerMenu">
+            <header>
+                <h1>Juego de Carreras</h1>
+            </header>
+            <main>
+                <button class="btn" onclick="location.href='car.html'">Iniciar Juegos</button>
+                <button class="btn" onclick="location.href='config.html'">Ajustes</button>
+                <button class="btn" onclick="location.href='ranking.html'">Puntaje</button>
+                <button class="btn">Salir</button>
+            </main>
+        </div>
 
-    // Cargar modelo
-    const loader = new GLTFLoader();
-    loader.load('./models/mustang.glb', function (gltf) {
-      scene.add(gltf.scene);
-    }, undefined, function (error) {
-      console.error(error);
-    });
-
-    // Animación
-    function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    // Resize
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-</script>
+        <div class="containerPosts">
+          <h1>Publicaciones del usuario</h1>
+          <div class="table-wrapper">
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Mensaje</th>
+                          <th>Fecha de Creación</th>
+                      </tr>
+                  </thead>
+                  <tbody id="postsBody">
+                      <!-- Las filas se generarán dinámicamente -->
+                  </tbody>
+              </table>
+          </div>
+      </div>
+    </div>
 </body>
 </html>
