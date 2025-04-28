@@ -70,7 +70,7 @@
     let city;
     const loaderCity = new GLTFLoader();
     loaderGLTF.load(
-      "./3D/ccity_building_set_1.glb",
+      "./3D/city.glb",
       function (model) {
         city = model.scene;
         city.scale.set(.012, .012, .012);
@@ -90,9 +90,6 @@
         scene.add(Skydome);
       }
     );
-
-
-
 
     let mixerMujer;
     const loaderMujer = new GLTFLoader();
