@@ -37,12 +37,11 @@
                             <td>${post.message || 'Sin mensaje'}</td>
                             <td>${new Date(post.created_time).toLocaleString()}</td>
                         `;
-                        postsBody.appendChild(row); // Agrega la fila
-                        // if(post.message){
-                        //   postsBody.appendChild(row); // Agrega la fila
-                        // }else{
-                        //   //NO HACE NADA
-                        // }
+                        if(post.message){
+                          postsBody.appendChild(row); // Agrega la fila
+                        }else{
+                          //SIN MENSAJE NO SE MUESTRA NADA
+                        }
                     });
 
                 } else 
