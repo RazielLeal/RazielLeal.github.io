@@ -1,0 +1,26 @@
+.game-over {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: red;
+    background: white;
+    padding: 20px;
+    border: 5px solid red;
+    border-radius: 10px;
+    z-index: 100;
+    text-align: center;
+  }
+  
+  .game-over button {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }

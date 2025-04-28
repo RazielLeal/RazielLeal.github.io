@@ -1,25 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantalla de Resultados - Juego de Carreras</title>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Pantalla de Resultados - SpeedTracks</title>
     <link rel="stylesheet" href="CSS/results.css">
     <link rel="stylesheet" href="CSS/general.css">
 
     <!-- ETIQUETAS PARA COMPARTIR EN FB -->
-    <meta property="og:title" content="¡Mira mi resultado en SpeedTracks! 🏁" />
+    <!-- <meta property="og:title" content="¡Mira mi resultado en SpeedTracks! 🏁" />
     <meta property="og:description" content="Compite conmigo y supera mi puntuación en este divertido juego de carreras." />
     <meta property="og:image" content="https://razielleal.github.io/CSS/IMG/Carro.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://razielleal.github.io/results.html" />
     <meta property="og:site_name" content="SpeedTracks" />
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="website"> -->
     
 
 </head>
 <body>
+
+    <script>
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId            : '2556967021316908',
+                xfbml            : true,
+                version          : 'v22.0'
+            });
+
+          var body = 'Reading JS SDK documentation';
+
+
+          //ESTE SCRIPT ES PARA VER LAS PULICACIONES DEL MURO DE LA PERSONA
+
+            FB.api('1872926253492113/posts', 'GET',
+             {
+                access_token: "EAAkVjEcCCywBO7ysS5m26NfxMnOb0PbRCPIE5pGZCYaPiiNKCwZArgyMNoNGW1RanQpxQ1RZBcMKKhNHNVk13QmfhzScxmnQS7ZAvF4ef1eWMpTtlfocOj6p0enu5ttx0fxwtPUeUS9pycQSbizQsZC0T3n9AGgaKUxu2GeoRnRZC10qhgBEAManXn3BqcaXiZB5PvUjmJG0dib5XIh7c2YLSZBvOGvI4G9SBPiZBowVJg4BCCmGpcZCsc"
+             }
+             , function(response) {
+                console.log(response);
+            });
+
+
+            //ESTE SCRIPT ES PARA PUBLICAR EN EL MURO DE LA PAGINA DE FACEBOOK
+            // FB.api('642150818978374/feed', 'POST',
+            //     {
+            //     message: "Hello World form SDK JS!",
+            //     access_token: "EAAJlNZAWtCcYBO2iHZB5ZCq1QY3Gh7OZA6yx1yXrVbRhtRPfLH4Ox1R0qT2jRUCUWskwEPyD6DymItGITintRQc94ZB9sbn7YN6D5BKWM0zUVUfnw2eZChutPaHnPeMyaLRM6nXT4fP06oOltzKZCxdHjJ8Ka4HxHJ7qZAoopO6eIpa9ZBZCJbU7cooIL1yQTps6JfKdLtrOD7PROnPeTwSCXoaVWBZBAZDZD"
+            //     },
+            //  function(response) {
+            //     if (response && !response.error) {
+            //         console.log(response);
+            //     }
+            // });
+
+        };
+      </script>
+
+      <script
+       async 
+       defer 
+       crossorigin="anonymous" 
+       src="https://connect.facebook.net/en_US/sdk.js">
+      </script>
+
     <div class="results-container">
         <header>
             <h1>Resultados de la Carrera</h1>
