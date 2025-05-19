@@ -26,6 +26,49 @@
     import { STLLoader } from "./STLLoader.js";
     import { GLTFLoader } from "./GLTFLoader.js";
 
+    class Personaje {
+      constructor(scene, modelPath, position, scale = 2) {
+          this.scene = scene;
+          this.position = position;
+          this.scale = scale;
+          this.hitbox = new THREE.Box3();
+          this.model = null;
+          this.mixer = null;
+
+          // Cargar el modelo
+          this.loader = new GLTFLoader();
+          this.loader.load(modelPath, (gltf) => {
+              this.model = gltf.scene;
+              this.model.scale.set(scale, scale, scale);
+              this.model.position.set(position.x, position.y, position.z);
+              scene.add(this.model);
+
+              // Configurar hitbox con el modelo
+              this.hitbox.setFromObject(this.model);
+
+              // Manejo de animación si el modelo tiene animaciones
+              if (gltf.animations.length > 0) {
+                  this.mixer = new THREE.AnimationMixer(this.model);
+                  const clip = gltf.animations[0];
+                  const action = this.mixer.clipAction(clip);
+                  action.play();
+              }
+          });
+      }
+
+      actualizarHitbox() {
+          if (this.model) {
+              this.hitbox.setFromObject(this.model);
+          }
+      }
+
+      actualizarAnimacion(deltaTime) {
+          if (this.mixer) {
+              this.mixer.update(deltaTime);
+          }
+      }
+    }
+  
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#34495E");
 
@@ -51,6 +94,7 @@
     plane.position.set(0, -0.5, 0);
     scene.add(plane);
 
+
     let toyotaSpeed = 0; // velocidad del Toyota
     let collision = false; // nueva variable de colisión
 
@@ -64,8 +108,20 @@
         toyota.rotation.y = Math.PI;
         toyota.position.set(85, 1, 98);
         scene.add(toyota);
+
+        const direccionFrontal = new THREE.Vector3();
+        toyota.getWorldDirection(direccionFrontal);
+        
       }
     );
+
+    const personajes = [
+      new Personaje(scene, "./3D/Mujer.glb", { x: 9, y: 0, z: -20 }),
+      new Personaje(scene, "./3D/woman.glb", { x: 9, y: 0, z: -70 }),
+      new Personaje(scene, "./3D/Hombre.glb", { x: -3, y: 0, z: -30 }),
+      new Personaje(scene, "./3D/Man.glb", { x: 4, y: 0, z: -80 })
+    ];
+
 
     let city;
     const loaderCity = new GLTFLoader();
@@ -76,6 +132,7 @@
         city.scale.set(.012, .012, .012);
         city.position.set(85, 0, 100);
         scene.add(city);
+
       }
     );
 
@@ -85,82 +142,11 @@
       "./3D/Sky.glb",
       function (model) {
         Skydome = model.scene;
-        Skydome.scale.set(1, 1, 1);
-        Skydome.position.set(0, 0, 0);
+        Skydome.scale.set(3, 3, 3);
+        Skydome.position.set(0, 10, 0);
         scene.add(Skydome);
       }
     );
-
-    let mixerMujer;
-    const loaderMujer = new GLTFLoader();
-    loaderMujer.load("./3D/Mujer.glb", function (gltf) {
-      mujer = gltf.scene;
-      mujer.scale.set(2, 2, 2);
-      mujer.rotation.y = Math.PI;
-      mujer.position.set(9, 0, -20);
-      scene.add(mujer);
-
-      mixerMujer = new THREE.AnimationMixer(mujer);
-      const clip = gltf.animations[0];
-      const action = mixerMujer.clipAction(clip);
-      action.play();
-    });
-    let mujer;
-
-    let mixerWoman;
-    const loaderWoman = new GLTFLoader();
-    loaderWoman.load("./3D/woman.glb", function (gltf) {
-      Woman = gltf.scene;
-      Woman.scale.set(2, 2, 2);
-      Woman.position.set(9, 0, -70);
-      scene.add(Woman);
-
-      mixerWoman = new THREE.AnimationMixer(Woman);
-      const clip = gltf.animations[0];
-      const action = mixerWoman.clipAction(clip);
-      action.play();
-    });
-    let Woman;
-
-
-    
-    
-
-    let mixerHombre;
-    const loaderHombre = new GLTFLoader();
-    loaderHombre.load("./3D/Hombre.glb", function (gltf) {
-      Hombre = gltf.scene;
-      Hombre.scale.set(2, 2, 2);
-      Hombre.rotation.y = 20;
-      Hombre.position.set(-3, 0, -30);
-      scene.add(Hombre);
-
-      mixerHombre = new THREE.AnimationMixer(Hombre);
-      const clip = gltf.animations[0];
-      const action = mixerHombre.clipAction(clip);
-      action.play();
-    });
-    let Hombre;
-
-    let mixerMan;
-    const loaderMan = new GLTFLoader();
-    loaderMan.load("./3D/Man.glb", function (gltf) {
-      Man = gltf.scene;
-      Man.scale.set(2, 2, 2);
-      Man.rotation.y = -20;
-      Man.position.set(4, 0, -80);
-      scene.add(Man);
-
-      mixerMan = new THREE.AnimationMixer(Man);
-      const clip = gltf.animations[0];
-      const action = mixerMan.clipAction(clip);
-      action.play();
-    });
-    let Man;
-
-
-
-
     let gameOver = false;
 
     // 🎮 Controles de teclado
@@ -180,19 +166,30 @@
     const turnSpeed = 0.03;
 
 
-    function animate() {
+    
+      function animate() {
+      // actualizarVisualizacionRango()
+      let deltaTime = 0.02;
+
       if (Skydome) {
         Skydome.rotation.y += 0.001;       
       }
 
+      personajes.forEach(personaje => {
+          personaje.actualizarAnimacion(deltaTime);
+          personaje.actualizarHitbox();
 
-      if (mixerMujer) mixerMujer.update(0.02);
-      
-      if (mixerWoman) mixerWoman.update(0.02);
+          if (toyota) {
+              //COLISIONES
+              const boxToyota = new THREE.Box3().setFromObject(toyota);
+              if (boxToyota.intersectsBox(personaje.hitbox)) {
+                gameOver = true;
+                showGameOver();
+              }              
+          }
 
-      if (mixerHombre) mixerHombre.update(0.02);
 
-      if (mixerMan) mixerMan.update(0.02);
+      });
 
       if (toyota) 
       {
@@ -206,7 +203,7 @@
           speed -= acceleration;
           if (speed < -maxSpeed/2) speed = -maxSpeed/2; // Reversa más lenta
         } else {
-          // Frenado natural
+          //Frenado natural
           if (speed > 0) {
             speed -= acceleration / 2;
             if (speed < 0) speed = 0;
@@ -223,15 +220,14 @@
         if (keysPressed['d']) {
           toyota.rotation.y -= turnSpeed;
         }
-
-        // Avanzar según la dirección del carro
+        //Avanzar según la dirección del carro
         toyota.position.x -= Math.sin(toyota.rotation.y) * speed;
         toyota.position.z -= Math.cos(toyota.rotation.y) * speed;
       
       }
       
 
-      // Cámara en tercera persona (persiguiendo al Toyota)
+      //Cámara en tercera persona (persiguiendo al Toyota)
       if (toyota) {
         const relativeCameraOffset = new THREE.Vector3(0, 3, -10); // posición detrás del carro
 
@@ -240,7 +236,7 @@
         camera.position.lerp(cameraOffset, 0.1); // Lerp para que la cámara siga suavemente
         camera.lookAt(toyota.position);
       }
-
+      // actualizarVisualizacionRango();
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     }
