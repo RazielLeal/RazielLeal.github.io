@@ -215,6 +215,25 @@
         scene.add(Skydome);
       }
     );
+
+    let enemigo; // Segundo carro
+    const enemySpeed = 0.05; // Velocidad constante del enemigo
+
+    loaderGLTF.load(
+      "./3D/toyota-chaser.glb", // Cambia por el modelo del segundo auto
+      function (model) {
+        enemigo = model.scene;
+        enemigo.scale.set(2, 2, 2);
+        enemigo.rotation.y = Math.PI;
+        enemigo.position.set(
+          currentMapConfig.toyotaStartPosition.x + 5, // Un poco separado del Toyota
+          currentMapConfig.toyotaStartPosition.y,
+          currentMapConfig.toyotaStartPosition.z + 5
+        );
+        scene.add(enemigo);
+      }
+    );
+
     
     
     let gameOver = false;
@@ -312,6 +331,26 @@
     const turnSpeed = 0.03;
 
     function animate() {
+      if (enemigo && !gameOver && !gameWon) {
+      const goal = new THREE.Vector3(
+        currentMapConfig.winCoordinates.x,
+        currentMapConfig.winCoordinates.y,
+        currentMapConfig.winCoordinates.z
+      );
+
+      const direction = new THREE.Vector3().subVectors(goal, enemigo.position).normalize();
+      enemigo.position.add(direction.multiplyScalar(enemySpeed));
+
+      // Verifica si el enemigo llegó a la meta
+      const distanceToGoal = enemigo.position.distanceTo(goal);
+      if (distanceToGoal < currentMapConfig.winRadius) {
+        gameOver = true;
+        showGameOver();
+      }
+}
+
+
+
       // Skip animation if game is over or won
       if (gameOver || gameWon) {
         requestAnimationFrame(animate);
@@ -519,6 +558,8 @@
         particles.position.copy(toyota.position.clone().add(offset));
       }
     }
+
+    
 
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
