@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modelos</title>
+  <link rel = "stylesheet" href = "../CSS/game.css">
+  <style>
+    body{
+      margin: 0; 
+    }
+  </style>
+</head>
+<body>
+  <header class = "header-container">
+    <div class = "btn-container">
+        <button class="btn" onclick="location.href='../car.html'"><img src = "../CSS/IMG/exit-icon.png"></button>
+        <link rel="stylesheet" href="game.css">
+        
+        <button class="btn" onclick="location.href='../stop.html'"><img src = "../CSS/IMG/pause-icon.png"></button>
+    </div>   
+  </header> 
+
+  <script type="module">
+    import * as THREE from "./three.module.js";
+    import { STLLoader } from "./STLLoader.js";
+    import { GLTFLoader } from "./GLTFLoader.js";
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#34495E");
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.set(0, 5, 20);
+
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.shadowMap.enabled = true;
+    document.body.appendChild(renderer.domElement);
+
+    const hemisphereLight = new THREE.HemisphereLight(0xffffbb, 0x080820, 1);
+    scene.add(hemisphereLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position.set(1, 5, -1);
+    scene.add(directionalLight);
+
+    const planeGeometry = new THREE.PlaneGeometry(500, 500);
+    const planeMaterial = new THREE.MeshStandardMaterial({ color: "slategrey" });
+    const plane = new THREE.Mesh(planeGeometry, planeMaterial);
+    plane.rotateX(-Math.PI / 2);
+    plane.position.set(0, -0.5, 0);
+    scene.add(plane);
+
+    let toyotaSpeed = 0; // velocidad del Toyota
+    let collision = false; // nueva variable de colisión
+
+    let toyota; 
+    const loaderGLTF = new GLTFLoader();
+    loaderGLTF.load(
+      "./3D/toyota-chaser.glb",
+      function (model) {
+        toyota = model.scene;
+        toyota.scale.set(2, 2, 2);
+        toyota.rotation.y = Math.PI;
+        toyota.position.set(85, 1, 98);
+        scene.add(toyota);
+      }
+    );
+
+    let city;
+    const loaderCity = new GLTFLoader();
+    loaderGLTF.load(
+      "./3D/city.glb",
+      function (model) {
+        city = model.scene;
+        city.scale.set(.012, .012, .012);
+        city.position.set(85, 0, 100);
+        scene.add(city);
+      }
+    );
+
+    let Skydome;
+    const loaderSkydome = new GLTFLoader();
+    loaderGLTF.load(
+      "./3D/Sky.glb",
+      function (model) {
+        Skydome = model.scene;
+        Skydome.scale.set(1, 1, 1);
+        Skydome.position.set(0, 0, 0);
+        scene.add(Skydome);
+      }
+    );
+
+    let mixerMujer;
+    const loaderMujer = new GLTFLoader();
+    loaderMujer.load("./3D/Mujer.glb", function (gltf) {
+      mujer = gltf.scene;
+      mujer.scale.set(2, 2, 2);
+      mujer.rotation.y = Math.PI;
+      mujer.position.set(9, 0, -20);
+      scene.add(mujer);
+
+      mixerMujer = new THREE.AnimationMixer(mujer);
+      const clip = gltf.animations[0];
+      const action = mixerMujer.clipAction(clip);
+      action.play();
+    });
+    let mujer;
+
+    let mixerWoman;
+    const loaderWoman = new GLTFLoader();
+    loaderWoman.load("./3D/woman.glb", function (gltf) {
+      Woman = gltf.scene;
+      Woman.scale.set(2, 2, 2);
+      Woman.position.set(9, 0, -70);
+      scene.add(Woman);
+
+      mixerWoman = new THREE.AnimationMixer(Woman);
+      const clip = gltf.animations[0];
+      const action = mixerWoman.clipAction(clip);
+      action.play();
+    });
+    let Woman;
+
+
+    
+    
+
+    let mixerHombre;
+    const loaderHombre = new GLTFLoader();
+    loaderHombre.load("./3D/Hombre.glb", function (gltf) {
+      Hombre = gltf.scene;
+      Hombre.scale.set(2, 2, 2);
+      Hombre.rotation.y = 20;
+      Hombre.position.set(-3, 0, -30);
+      scene.add(Hombre);
+
+      mixerHombre = new THREE.AnimationMixer(Hombre);
+      const clip = gltf.animations[0];
+      const action = mixerHombre.clipAction(clip);
+      action.play();
+    });
+    let Hombre;
+
+    let mixerMan;
+    const loaderMan = new GLTFLoader();
+    loaderMan.load("./3D/Man.glb", function (gltf) {
+      Man = gltf.scene;
+      Man.scale.set(2, 2, 2);
+      Man.rotation.y = -20;
+      Man.position.set(4, 0, -80);
+      scene.add(Man);
+
+      mixerMan = new THREE.AnimationMixer(Man);
+      const clip = gltf.animations[0];
+      const action = mixerMan.clipAction(clip);
+      action.play();
+    });
+    let Man;
+
+
+
+
+    let gameOver = false;
+
+    // 🎮 Controles de teclado
+    const keysPressed = {};
+    window.addEventListener('keydown', (e) => {
+      keysPressed[e.key.toLowerCase()] = true;
+    });
+
+    window.addEventListener('keyup', (e) => {
+      keysPressed[e.key.toLowerCase()] = false;
+    });
+
+    //Variables de movimiento
+    let speed = 0;
+    const maxSpeed = 1;
+    const acceleration = 0.01;
+    const turnSpeed = 0.03;
+
+    function animate() {
+      if (Skydome) {
+        Skydome.rotation.y += 0.001;       
+      }
+
+
+      if (mixerMujer) mixerMujer.update(0.02);
+      
+      if (mixerWoman) mixerWoman.update(0.02);
+
+      if (mixerHombre) mixerHombre.update(0.02);
+
+      if (mixerMan) mixerMan.update(0.02);
+
+      if (toyota && mujer) {
+        const boxToyota = new THREE.Box3().setFromObject(toyota);
+        const boxMujer = new THREE.Box3().setFromObject(mujer);
+
+        collision = boxToyota.intersectsBox(boxMujer);
+
+        if (collision && !gameOver) {
+          gameOver = true;
+          showGameOver();
+        }
+
+
+                if (!collision) {
+          if (keysPressed['s']) {
+            speed += acceleration;
+            if (speed > maxSpeed) speed = maxSpeed;
+          } else if (keysPressed['w']) {
+            speed -= acceleration;
+            if (speed < -maxSpeed/2) speed = -maxSpeed/2; // Reversa más lenta
+          } else {
+            // Frenado natural
+            if (speed > 0) {
+              speed -= acceleration / 2;
+              if (speed < 0) speed = 0;
+            }
+            if (speed < 0) {
+              speed += acceleration / 2;
+              if (speed > 0) speed = 0;
+            }
+          }
+
+          if (keysPressed['a']) {
+            toyota.rotation.y += turnSpeed;
+          }
+          if (keysPressed['d']) {
+            toyota.rotation.y -= turnSpeed;
+          }
+
+          // Avanzar según la dirección del carro
+          toyota.position.x -= Math.sin(toyota.rotation.y) * speed;
+          toyota.position.z -= Math.cos(toyota.rotation.y) * speed;
+        }
+
+
+      }
+      
+              // Movimiento solo si no hay colisión
+
+      // Cámara en tercera persona (persiguiendo al Toyota)
+      if (toyota) {
+        const relativeCameraOffset = new THREE.Vector3(0, 3, -10); // posición detrás del carro
+
+        const cameraOffset = relativeCameraOffset.applyMatrix4(toyota.matrixWorld);
+
+        camera.position.lerp(cameraOffset, 0.1); // Lerp para que la cámara siga suavemente
+        camera.lookAt(toyota.position);
+      }
+
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    function showGameOver() {
+      const div = document.createElement('div');
+      div.className = 'game-over'; 
+      div.innerText = '¡Perdiste!';
+
+      // Crear el botón
+      const button = document.createElement('button');
+      button.innerText = 'Ir a Resultados';
+      button.addEventListener('click', () => {
+        window.location.href = '../ranking.html'; 
+      });
+
+      div.appendChild(button);
+      document.body.appendChild(div);
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    window.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === 'p' && toyota) {
+        console.log(`Posición del Toyota: X=${toyota.position.x.toFixed(2)}, Y=${toyota.position.y.toFixed(2)}, Z=${toyota.position.z.toFixed(2)}`);
+        
+        // Verificar si ya existe el div de posición
+        let positionDiv = document.getElementById("car-position");
+        if (!positionDiv) {
+            positionDiv = document.createElement("div");
+            positionDiv.id = "car-position";
+            positionDiv.style.position = "absolute";
+            positionDiv.style.top = "10px";
+            positionDiv.style.left = "10px";
+            positionDiv.style.color = "white";
+            positionDiv.style.background = "rgba(0, 0, 0, 0.7)";
+            positionDiv.style.padding = "10px";
+            positionDiv.style.borderRadius = "5px";
+            document.body.appendChild(positionDiv);
+        }
+
+        // Mostrar la posición del Toyota en pantalla
+        positionDiv.innerText = `Toyota: X=${toyota.position.x.toFixed(2)}, Y=${toyota.position.y.toFixed(2)}, Z=${toyota.position.z.toFixed(2)}`;
+
+        // Hacer que desaparezca después de 3 segundos
+        setTimeout(() => {
+            positionDiv.innerText = ""; 
+        }, 3000);
+    }
+});
+  </script>
+</body>
+</html>
