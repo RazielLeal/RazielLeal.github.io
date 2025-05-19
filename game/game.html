@@ -179,6 +179,7 @@
     const acceleration = 0.01;
     const turnSpeed = 0.03;
 
+
     function animate() {
       if (Skydome) {
         Skydome.rotation.y += 0.001;       
@@ -193,53 +194,42 @@
 
       if (mixerMan) mixerMan.update(0.02);
 
-      if (toyota && mujer) {
+      if (toyota) 
+      {
         const boxToyota = new THREE.Box3().setFromObject(toyota);
-        const boxMujer = new THREE.Box3().setFromObject(mujer);
 
 
-        if (collision && !gameOver) {
-          gameOver = true;
-          showGameOver();
+        if (keysPressed['s']) {
+          speed += acceleration;
+          if (speed > maxSpeed) speed = maxSpeed;
+        } else if (keysPressed['w']) {
+          speed -= acceleration;
+          if (speed < -maxSpeed/2) speed = -maxSpeed/2; // Reversa más lenta
+        } else {
+          // Frenado natural
+          if (speed > 0) {
+            speed -= acceleration / 2;
+            if (speed < 0) speed = 0;
+          }
+          if (speed < 0) {
+            speed += acceleration / 2;
+            if (speed > 0) speed = 0;
+          }
         }
 
-
-          if (!collision) {
-
-          if (keysPressed['s']) {
-            speed += acceleration;
-            if (speed > maxSpeed) speed = maxSpeed;
-          } else if (keysPressed['w']) {
-            speed -= acceleration;
-            if (speed < -maxSpeed/2) speed = -maxSpeed/2; // Reversa más lenta
-          } else {
-            // Frenado natural
-            if (speed > 0) {
-              speed -= acceleration / 2;
-              if (speed < 0) speed = 0;
-            }
-            if (speed < 0) {
-              speed += acceleration / 2;
-              if (speed > 0) speed = 0;
-            }
-          }
-
-          if (keysPressed['a']) {
-            toyota.rotation.y += turnSpeed;
-          }
-          if (keysPressed['d']) {
-            toyota.rotation.y -= turnSpeed;
-          }
-
-          // Avanzar según la dirección del carro
-          toyota.position.x -= Math.sin(toyota.rotation.y) * speed;
-          toyota.position.z -= Math.cos(toyota.rotation.y) * speed;
+        if (keysPressed['a']) {
+          toyota.rotation.y += turnSpeed;
+        }
+        if (keysPressed['d']) {
+          toyota.rotation.y -= turnSpeed;
         }
 
-
+        // Avanzar según la dirección del carro
+        toyota.position.x -= Math.sin(toyota.rotation.y) * speed;
+        toyota.position.z -= Math.cos(toyota.rotation.y) * speed;
+      
       }
       
-              // Movimiento solo si no hay colisión
 
       // Cámara en tercera persona (persiguiendo al Toyota)
       if (toyota) {
