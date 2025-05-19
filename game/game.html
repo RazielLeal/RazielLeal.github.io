@@ -4,20 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Modelos</title>
-  <link rel = "stylesheet" href = "../CSS/game.css">
-  <style>
-    body{
-      margin: 0; 
-    }
-  </style>
+  <link rel="stylesheet" href="../CSS/game.css">
 </head>
 <body>
-  <header class = "header-container">
-    <div class = "btn-container">
-        <button class="btn" onclick="location.href='../car.html'"><img src = "../CSS/IMG/exit-icon.png"></button>
+  <header class="header-container">
+    <div class="btn-container">
+        <button class="btn" onclick="location.href='../car.html'"><img src="../CSS/IMG/exit-icon.png"></button>
         <link rel="stylesheet" href="game.css">
-        
-        <button class="btn" onclick="location.href='../stop.html'"><img src = "../CSS/IMG/pause-icon.png"></button>
+        <button class="btn" onclick="location.href='../stop.html'"><img src="../CSS/IMG/pause-icon.png"></button>
     </div>   
   </header> 
 
@@ -26,6 +20,61 @@
     import { STLLoader } from "./STLLoader.js";
     import { GLTFLoader } from "./GLTFLoader.js";
 
+    // Get the selected map from localStorage
+    const selectedMap = localStorage.getItem('selectedMap') || 'map1';
+    
+    // Map configuration (defines specifics for each map)
+    const mapConfig = {
+      map1: {
+        cityModel: "./3D/n64_moo_moo_farm.glb",
+        cityScale: 3.2,
+        cityPosition: { x: 85, y: 0, z: 100 },
+        toyotaStartPosition: { x: 85, y: 1, z: 98 },
+        winCoordinates: { x: 20, y: 1, z: 20 },
+        winRadius: 5, // how close the player needs to get to win
+        personajes: [
+          { model: "./3D/Mujer.glb", position: { x: 9, y: 0, z: -20 } },
+          { model: "./3D/woman.glb", position: { x: 9, y: 0, z: -70 } },
+          { model: "./3D/Hombre.glb", position: { x: -3, y: 0, z: -30 } },
+          { model: "./3D/Man.glb", position: { x: 4, y: 0, z: -80 } }
+        ]
+      },
+      map2: {
+        cityModel: "./3D/city.glb", // You would need to create this file
+        cityScale: 0.015,
+        cityPosition: { x: 85, y: 0, z: 100 },
+        toyotaStartPosition: { x: 75, y: 1, z: 90 },
+        winCoordinates: { x: -30, y: 1, z: -30 },
+        winRadius: 5,
+        personajes: [
+          { model: "./3D/Mujer.glb", position: { x: 15, y: 0, z: -15 } },
+          { model: "./3D/woman.glb", position: { x: -20, y: 0, z: -50 } },
+          { model: "./3D/Hombre.glb", position: { x: 30, y: 0, z: -20 } },
+          { model: "./3D/Man.glb", position: { x: -10, y: 0, z: -40 } }
+        ]
+      },
+      map3: {
+        cityModel: "./3D/n64_kalimari_desert.glb", // You would need to create this file
+        cityScale: 0.08,
+        cityPosition: { x: 85, y: -.5, z: 100 },
+        toyotaStartPosition: { x: 65, y: 1, z: 80 },
+        winCoordinates: { x: -50, y: 1, z: -50 },
+        winRadius: 5,
+        personajes: [
+          { model: "./3D/Mujer.glb", position: { x: 20, y: 0, z: -10 } },
+          { model: "./3D/woman.glb", position: { x: -15, y: 0, z: -30 } },
+          { model: "./3D/Hombre.glb", position: { x: 25, y: 0, z: -40 } },
+          { model: "./3D/Man.glb", position: { x: -5, y: 0, z: -60 } }
+        ]
+      }
+    };
+    
+    // Get configuration for current map
+    const currentMapConfig = mapConfig[selectedMap];
+    
+    // Debug info about loaded map
+    console.log(`Loading map: ${selectedMap}`);
+    
     class Personaje {
       constructor(scene, modelPath, position, scale = 2) {
           this.scene = scene;
@@ -94,6 +143,20 @@
     plane.position.set(0, -0.5, 0);
     scene.add(plane);
 
+    // Win area visualization (optional - helps players find the goal)
+    const winAreaGeometry = new THREE.CylinderGeometry(currentMapConfig.winRadius, currentMapConfig.winRadius, 10, 32);
+    const winAreaMaterial = new THREE.MeshStandardMaterial({ 
+        color: 0x00ff00, 
+        transparent: true, 
+        opacity: 0.3 
+    });
+    const winArea = new THREE.Mesh(winAreaGeometry, winAreaMaterial);
+    winArea.position.set(
+        currentMapConfig.winCoordinates.x, 
+        currentMapConfig.winCoordinates.y + 5, 
+        currentMapConfig.winCoordinates.z
+    );
+    scene.add(winArea);
 
     let toyotaSpeed = 0; // velocidad del Toyota
     let collision = false; // nueva variable de colisión
@@ -106,33 +169,41 @@
         toyota = model.scene;
         toyota.scale.set(2, 2, 2);
         toyota.rotation.y = Math.PI;
-        toyota.position.set(85, 1, 98);
+        // Set position from map config
+        toyota.position.set(
+            currentMapConfig.toyotaStartPosition.x, 
+            currentMapConfig.toyotaStartPosition.y, 
+            currentMapConfig.toyotaStartPosition.z
+        );
         scene.add(toyota);
 
         const direccionFrontal = new THREE.Vector3();
         toyota.getWorldDirection(direccionFrontal);
-        
       }
     );
 
-    const personajes = [
-      new Personaje(scene, "./3D/Mujer.glb", { x: 9, y: 0, z: -20 }),
-      new Personaje(scene, "./3D/woman.glb", { x: 9, y: 0, z: -70 }),
-      new Personaje(scene, "./3D/Hombre.glb", { x: -3, y: 0, z: -30 }),
-      new Personaje(scene, "./3D/Man.glb", { x: 4, y: 0, z: -80 })
-    ];
-
+    // Load personajes from map config
+    const personajes = currentMapConfig.personajes.map(personaje => 
+        new Personaje(scene, personaje.model, personaje.position)
+    );
 
     let city;
     const loaderCity = new GLTFLoader();
     loaderGLTF.load(
-      "./3D/city.glb",
+      currentMapConfig.cityModel, // Use the model from config
       function (model) {
         city = model.scene;
-        city.scale.set(.012, .012, .012);
-        city.position.set(85, 0, 100);
+        city.scale.set(
+            currentMapConfig.cityScale,
+            currentMapConfig.cityScale,
+            currentMapConfig.cityScale
+        );
+        city.position.set(
+            currentMapConfig.cityPosition.x,
+            currentMapConfig.cityPosition.y,
+            currentMapConfig.cityPosition.z
+        );
         scene.add(city);
-
       }
     );
 
@@ -147,7 +218,9 @@
         scene.add(Skydome);
       }
     );
+    
     let gameOver = false;
+    let gameWon = false;
 
     // 🎮 Controles de teclado
     const keysPressed = {};
@@ -165,10 +238,13 @@
     const acceleration = 0.01;
     const turnSpeed = 0.03;
 
-
-    
-      function animate() {
-      // actualizarVisualizacionRango()
+    function animate() {
+      // Skip animation if game is over or won
+      if (gameOver || gameWon) {
+        requestAnimationFrame(animate);
+        return;
+      }
+      
       let deltaTime = 0.02;
 
       if (Skydome) {
@@ -187,14 +263,21 @@
                 showGameOver();
               }              
           }
-
-
       });
 
-      if (toyota) 
-      {
+      if (toyota) {
         const boxToyota = new THREE.Box3().setFromObject(toyota);
 
+        // Check for win condition - distance to win coordinates
+        const distanceToWin = Math.sqrt(
+            Math.pow(toyota.position.x - currentMapConfig.winCoordinates.x, 2) +
+            Math.pow(toyota.position.z - currentMapConfig.winCoordinates.z, 2)
+        );
+        
+        if (distanceToWin < currentMapConfig.winRadius) {
+            gameWon = true;
+            showWinMessage();
+        }
 
         if (keysPressed['s']) {
           speed += acceleration;
@@ -223,7 +306,6 @@
         //Avanzar según la dirección del carro
         toyota.position.x -= Math.sin(toyota.rotation.y) * speed;
         toyota.position.z -= Math.cos(toyota.rotation.y) * speed;
-      
       }
       
 
@@ -236,7 +318,6 @@
         camera.position.lerp(cameraOffset, 0.1); // Lerp para que la cámara siga suavemente
         camera.lookAt(toyota.position);
       }
-      // actualizarVisualizacionRango();
       renderer.render(scene, camera);
       requestAnimationFrame(animate);
     }
@@ -250,13 +331,69 @@
 
       // Crear el botón
       const button = document.createElement('button');
-      button.innerText = 'Ir a Resultados';
+      button.innerText = 'Volver a intentar';
       button.addEventListener('click', () => {
-        window.location.href = '../ranking.html'; 
+        location.reload(); 
+      });
+      
+      const exitButton = document.createElement('button');
+      exitButton.innerText = 'Salir';
+      exitButton.style.backgroundColor = '#d9534f';
+      exitButton.addEventListener('click', () => {
+        window.location.href = '../road.html'; 
       });
 
       div.appendChild(button);
+      div.appendChild(exitButton);
       document.body.appendChild(div);
+    }
+    
+    function showWinMessage() {
+      // Update the progress in localStorage
+      updateProgress();
+      
+      const div = document.createElement('div');
+      div.className = 'win-message'; 
+      div.innerHTML = '¡Felicidades! <br>¡Has completado la pista!';
+
+      // Create next map button
+      const nextButton = document.createElement('button');
+      nextButton.innerText = 'Siguiente Pista';
+      nextButton.addEventListener('click', () => {
+        window.location.href = '../road.html'; 
+      });
+      
+      // Create retry button
+      const retryButton = document.createElement('button');
+      retryButton.innerText = 'Volver a jugar';
+      retryButton.style.backgroundColor = '#5bc0de';
+      retryButton.addEventListener('click', () => {
+        location.reload(); 
+      });
+
+      div.appendChild(nextButton);
+      div.appendChild(retryButton);
+      document.body.appendChild(div);
+    }
+    
+    function updateProgress() {
+      // Get current progress
+      const progress = JSON.parse(localStorage.getItem('gameProgress'));
+      
+      // Mark current map as completed
+      progress[selectedMap].completed = true;
+      
+      // Unlock the next map if there is one
+      const mapIds = Object.keys(progress);
+      const currentIndex = mapIds.indexOf(selectedMap);
+      
+      if (currentIndex < mapIds.length - 1) {
+        const nextMapId = mapIds[currentIndex + 1];
+        progress[nextMapId].unlocked = true;
+      }
+      
+      // Save updated progress
+      localStorage.setItem('gameProgress', JSON.stringify(progress));
     }
 
     window.addEventListener('resize', () => {
@@ -266,33 +403,33 @@
     });
 
     window.addEventListener('keydown', (e) => {
-    if (e.key.toLowerCase() === 'p' && toyota) {
-        console.log(`Posición del Toyota: X=${toyota.position.x.toFixed(2)}, Y=${toyota.position.y.toFixed(2)}, Z=${toyota.position.z.toFixed(2)}`);
-        
-        // Verificar si ya existe el div de posición
-        let positionDiv = document.getElementById("car-position");
-        if (!positionDiv) {
-            positionDiv = document.createElement("div");
-            positionDiv.id = "car-position";
-            positionDiv.style.position = "absolute";
-            positionDiv.style.top = "10px";
-            positionDiv.style.left = "10px";
-            positionDiv.style.color = "white";
-            positionDiv.style.background = "rgba(0, 0, 0, 0.7)";
-            positionDiv.style.padding = "10px";
-            positionDiv.style.borderRadius = "5px";
-            document.body.appendChild(positionDiv);
-        }
+      if (e.key.toLowerCase() === 'p' && toyota) {
+          console.log(`Posición del Toyota: X=${toyota.position.x.toFixed(2)}, Y=${toyota.position.y.toFixed(2)}, Z=${toyota.position.z.toFixed(2)}`);
+          
+          // Verificar si ya existe el div de posición
+          let positionDiv = document.getElementById("car-position");
+          if (!positionDiv) {
+              positionDiv = document.createElement("div");
+              positionDiv.id = "car-position";
+              positionDiv.style.position = "absolute";
+              positionDiv.style.top = "10px";
+              positionDiv.style.left = "10px";
+              positionDiv.style.color = "white";
+              positionDiv.style.background = "rgba(0, 0, 0, 0.7)";
+              positionDiv.style.padding = "10px";
+              positionDiv.style.borderRadius = "5px";
+              document.body.appendChild(positionDiv);
+          }
 
-        // Mostrar la posición del Toyota en pantalla
-        positionDiv.innerText = `Toyota: X=${toyota.position.x.toFixed(2)}, Y=${toyota.position.y.toFixed(2)}, Z=${toyota.position.z.toFixed(2)}`;
+          // Mostrar la posición del Toyota en pantalla
+          positionDiv.innerText = `Toyota: X=${toyota.position.x.toFixed(2)}, Y=${toyota.position.y.toFixed(2)}, Z=${toyota.position.z.toFixed(2)}`;
 
-        // Hacer que desaparezca después de 3 segundos
-        setTimeout(() => {
-            positionDiv.innerText = ""; 
-        }, 3000);
-    }
-});
+          // Hacer que desaparezca después de 3 segundos
+          setTimeout(() => {
+              positionDiv.innerText = ""; 
+          }, 3000);
+      }
+    });
   </script>
 </body>
 </html>

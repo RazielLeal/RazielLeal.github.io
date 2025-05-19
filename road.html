@@ -14,17 +14,14 @@
         </header>
         <main>
             <div class="track-options">
-                <div class="track" id = "track1">
-                    <!-- <canvas id="track1-canva"></canvas> -->
-                    <img src="CSS/IMG/mapa1.png" alt="Pista 1" onclick="location.href='./game/index.html'">
+                <div class="track" id="track1">
+                    <img src="CSS/IMG/mapa1.png" alt="Pista 1" data-map="map1">
                 </div>
-                <div class="track" id = "track2">
-                    <!-- <canvas id="track2-canva"></canvas> -->
-                    <img src="CSS/IMG/mapa2.png" alt="Pista 2" onclick="location.href='./game/index.html'">
+                <div class="track locked" id="track2">
+                    <img src="CSS/IMG/mapa2.png" alt="Pista 2" data-map="map2">
                 </div>
-                <div class="track" id = "track3">
-                    <!-- <canvas id="track3-canva"></canvas> -->
-                    <img src="CSS/IMG/mapa3.png" alt="Pista 3" onclick="location.href='./game/index.html'">
+                <div class="track locked" id="track3">
+                    <img src="CSS/IMG/mapa3.png" alt="Pista 3" data-map="map3">
                 </div>
             </div>
         </main>
@@ -32,6 +29,61 @@
             <button class="btn" onclick="location.href='car.html'">Regresar</button>
         </footer>
     </div>
+
+    <script>
+    //Se agrego esto
+        // Function to initialize progress tracking
+        function initializeProgress() {
+            // If no progress is stored, create default values
+            if (!localStorage.getItem('gameProgress')) {
+                const defaultProgress = {
+                    map1: { unlocked: true, completed: false },
+                    map2: { unlocked: false, completed: false },
+                    map3: { unlocked: false, completed: false }
+                };
+                localStorage.setItem('gameProgress', JSON.stringify(defaultProgress));
+            }
+
+            updateMapAvailability();
+        }
+
+        // Function to update map availability based on progress
+        function updateMapAvailability() {
+            const progress = JSON.parse(localStorage.getItem('gameProgress'));
+
+            // Update each track's appearance based on unlock status
+            for (const mapId in progress) {
+                const trackElement = document.querySelector(`.track img[data-map="${mapId}"]`).parentElement;
+
+                if (progress[mapId].unlocked) {
+                    trackElement.classList.remove('locked');
+                } else {
+                    trackElement.classList.add('locked');
+                }
+            }
+        }
+
+        // Add click handlers to tracks
+        document.querySelectorAll('.track').forEach(track => {
+            track.addEventListener('click', function() {
+                // Only proceed if track is not locked
+                if (!this.classList.contains('locked')) {
+                    const mapId = this.querySelector('img').dataset.map;
+                    // Store the selected map in localStorage
+                    localStorage.setItem('selectedMap', mapId);
+                    // Navigate to game
+                    location.href = './game/game.html';
+                }
+            });
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializeProgress);
+
+        // For testing: Reset progress
+        // Uncomment the line below to reset progress
+        localStorage.removeItem('gameProgress');
+    </script>
 
 </body>
 </html>

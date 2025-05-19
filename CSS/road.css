@@ -1,4 +1,29 @@
 
+.track.locked {
+            position: relative;
+            filter: grayscale(100%);
+            cursor: not-allowed;
+        }
+        
+.track.locked::after {
+    content: "🔒";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: white;
+    text-shadow: 2px 2px 4px #000;
+}
+
+.track {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.track:not(.locked):hover {
+    transform: scale(1.05);
+}
 .track-options {
     display: flex;
     gap: 20px;
