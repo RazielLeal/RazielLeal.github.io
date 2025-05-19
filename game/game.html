@@ -197,7 +197,6 @@
         const boxToyota = new THREE.Box3().setFromObject(toyota);
         const boxMujer = new THREE.Box3().setFromObject(mujer);
 
-        collision = boxToyota.intersectsBox(boxMujer);
 
         if (collision && !gameOver) {
           gameOver = true;
@@ -205,7 +204,8 @@
         }
 
 
-                if (!collision) {
+          if (!collision) {
+
           if (keysPressed['s']) {
             speed += acceleration;
             if (speed > maxSpeed) speed = maxSpeed;
