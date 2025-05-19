@@ -15,7 +15,7 @@
     </div>   
   </header> 
 
-  <script type="module">
+    <script type="module">
     import * as THREE from "./three.module.js";
     import { STLLoader } from "./STLLoader.js";
     import { GLTFLoader } from "./GLTFLoader.js";
@@ -27,11 +27,12 @@
     const mapConfig = {
       map1: {
         cityModel: "./3D/n64_moo_moo_farm.glb",
-        cityScale: 3.2,
+        cityScale: 0.012,
         cityPosition: { x: 85, y: 0, z: 100 },
         toyotaStartPosition: { x: 85, y: 1, z: 98 },
         winCoordinates: { x: 20, y: 1, z: 20 },
         winRadius: 5, // how close the player needs to get to win
+        timeLimit: 60, // Time limit in seconds
         personajes: [
           { model: "./3D/Mujer.glb", position: { x: 9, y: 0, z: -20 } },
           { model: "./3D/woman.glb", position: { x: 9, y: 0, z: -70 } },
@@ -46,6 +47,7 @@
         toyotaStartPosition: { x: 75, y: 1, z: 90 },
         winCoordinates: { x: -30, y: 1, z: -30 },
         winRadius: 5,
+        timeLimit: 50, // Time limit in seconds
         personajes: [
           { model: "./3D/Mujer.glb", position: { x: 15, y: 0, z: -15 } },
           { model: "./3D/woman.glb", position: { x: -20, y: 0, z: -50 } },
@@ -55,11 +57,12 @@
       },
       map3: {
         cityModel: "./3D/n64_kalimari_desert.glb", // You would need to create this file
-        cityScale: 0.08,
-        cityPosition: { x: 85, y: -.5, z: 100 },
+        cityScale: 0.018,
+        cityPosition: { x: 85, y: 0, z: 100 },
         toyotaStartPosition: { x: 65, y: 1, z: 80 },
         winCoordinates: { x: -50, y: 1, z: -50 },
         winRadius: 5,
+        timeLimit: 40, // Time limit in seconds
         personajes: [
           { model: "./3D/Mujer.glb", position: { x: 20, y: 0, z: -10 } },
           { model: "./3D/woman.glb", position: { x: -15, y: 0, z: -30 } },
@@ -219,8 +222,83 @@
       }
     );
     
+    
     let gameOver = false;
     let gameWon = false;
+    
+    // Create timer UI
+    const timerContainer = document.createElement('div');
+    timerContainer.className = 'timer-container';
+    timerContainer.innerHTML = '<span class="timer-icon">⏱️</span><span id="timer-display">00:00</span>';
+    document.body.appendChild(timerContainer);
+    
+    // Timer variables
+    let timeRemaining = currentMapConfig.timeLimit; // Time in seconds
+    let timerInterval;
+    
+    // Start the timer
+    function startTimer() {
+      updateTimerDisplay();
+      timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        
+        // Check if time is running out (less than 10 seconds)
+        if (timeRemaining <= 10) {
+          document.getElementById('timer-display').classList.add('timer-warning');
+        }
+        
+        // Check if time is up
+        if (timeRemaining <= 0) {
+          clearInterval(timerInterval);
+          gameOver = true;
+          showTimeUpMessage();
+        }
+      }, 1000);
+    }
+    
+    // Update the timer display
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timeRemaining / 60);
+      const seconds = timeRemaining % 60;
+      
+      document.getElementById('timer-display').textContent = 
+        `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+    
+    // Stop the timer
+    function stopTimer() {
+      clearInterval(timerInterval);
+    }
+    
+    // Show time up message
+    function showTimeUpMessage() {
+      const div = document.createElement('div');
+      div.className = 'game-over'; 
+      div.innerHTML = '¡Se acabó el tiempo!<br>Tienes que ser más rápido.';
+
+      // Retry button
+      const button = document.createElement('button');
+      button.innerText = 'Volver a intentar';
+      button.addEventListener('click', () => {
+        location.reload(); 
+      });
+      
+      // Exit button
+      const exitButton = document.createElement('button');
+      exitButton.innerText = 'Salir';
+      exitButton.style.backgroundColor = '#d9534f';
+      exitButton.addEventListener('click', () => {
+        window.location.href = '../road.html'; 
+      });
+
+      div.appendChild(button);
+      div.appendChild(exitButton);
+      document.body.appendChild(div);
+    }
+    
+    // Start the timer when the game starts
+    startTimer();
 
     // 🎮 Controles de teclado
     const keysPressed = {};
@@ -260,6 +338,7 @@
               const boxToyota = new THREE.Box3().setFromObject(toyota);
               if (boxToyota.intersectsBox(personaje.hitbox)) {
                 gameOver = true;
+                stopTimer(); // Stop the timer
                 showGameOver();
               }              
           }
@@ -276,6 +355,7 @@
         
         if (distanceToWin < currentMapConfig.winRadius) {
             gameWon = true;
+            stopTimer(); // Stop the timer
             showWinMessage();
         }
 
@@ -352,9 +432,16 @@
       // Update the progress in localStorage
       updateProgress();
       
+      // Calculate time taken (initial time limit - remaining time)
+      const timeTaken = currentMapConfig.timeLimit - timeRemaining;
+      const minutes = Math.floor(timeTaken / 60);
+      const seconds = timeTaken % 60;
+      const timeString = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+      
       const div = document.createElement('div');
       div.className = 'win-message'; 
-      div.innerHTML = '¡Felicidades! <br>¡Has completado la pista!';
+      div.innerHTML = `¡Felicidades! <br>¡Has completado la pista!<br>
+                       <span style="font-size: 18px;">Tiempo: ${timeString}</span>`;
 
       // Create next map button
       const nextButton = document.createElement('button');
@@ -382,6 +469,14 @@
       
       // Mark current map as completed
       progress[selectedMap].completed = true;
+      
+      // Calculate time taken
+      const timeTaken = currentMapConfig.timeLimit - timeRemaining;
+      
+      // Update best time if better than previous best (or if first completion)
+      if (!progress[selectedMap].bestTime || timeTaken < progress[selectedMap].bestTime) {
+        progress[selectedMap].bestTime = timeTaken;
+      }
       
       // Unlock the next map if there is one
       const mapIds = Object.keys(progress);

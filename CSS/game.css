@@ -141,54 +141,84 @@ body{
       text-align: center;
       font-size: 24px;
       z-index: 1000;
-    }
-    
-    .game-over button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #4CAF50;
+}
+
+.game-over button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.game-over button:hover {
+    background-color: #45a049;
+}
+
+.win-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFD700;
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 28px;
+    z-index: 1000;
+}
+
+.win-message button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.win-message button:hover {
+    background-color: #F0C000;
+}
+
+.timer-container {
+      position: absolute;
+      transform: translate(0, 100px); 
+      top: 20px;
+      right: 20px;
+      background-color: rgba(0, 0, 0, 0.7);
       color: white;
-      border: none;
+      padding: 10px 15px;
       border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
+      font-size: 24px;
+      font-family: 'Arial', sans-serif;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+}
     
-    .game-over button:hover {
-      background-color: #45a049;
-    }
-    
-    .win-message {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0, 0, 0, 0.8);
-      color: #FFD700;
-      padding: 20px 40px;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 28px;
-      z-index: 1000;
-    }
-    
-    .win-message button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #FFD700;
-      color: black;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      margin-right: 10px;
-    }
-    
-    .win-message button:hover {
-      background-color: #F0C000;
-    }
+.timer-icon {
+    margin-right: 10px;
+    font-size: 20px;
+}
 
+.timer-warning {
+    color: #FF5722;
+    animation: pulse 1s infinite;
+}
 
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
 /* footer {
     margin-bottom: 20px;
 }
