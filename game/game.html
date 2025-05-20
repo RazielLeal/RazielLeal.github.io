@@ -84,8 +84,8 @@
         cityModel: "./3D/n64_kalimari_desert.glb", // You would need to create this file
         cityScale: 0.08,
         cityPosition: { x: 85, y: 0, z: 100 },
-        toyotaStartPosition: { x: 65, y: 1, z: 80 },
-        winCoordinates: { x: -50, y: 1, z: -50 },
+        toyotaStartPosition: { x: 84, y: 1, z: 96 },
+        winCoordinates: { x: 37, y: 1, z: 304 },
         winRadius: 5,
         timeLimit: 40, // Time limit in seconds
         personajes: [
@@ -95,17 +95,20 @@
           { model: "./3D/Man.glb", position: { x: -5, y: 0, z: -60 } }
         ],
                         enemyPath: [ // 🔥 Nueva ruta del enemigo
-          new THREE.Vector3(85, 1, 98),   
-          new THREE.Vector3(86, 1, -12),  
-          new THREE.Vector3(26, 1, -7),  
-          new THREE.Vector3(-269, 1, -7),
-          new THREE.Vector3(-263, 1, -67),
-          new THREE.Vector3(-232, 1, -77),
-          new THREE.Vector3(-235, 1, -120),
-          new THREE.Vector3(-19, 1, -117),
-          new THREE.Vector3(-30, 1, -30) // Último punto = winCoordinates
+          new THREE.Vector3(91, 1, 98),   
+          new THREE.Vector3(72, 1, 37),  
+          new THREE.Vector3(29, 1, 12),  
+          new THREE.Vector3(-22, 1, 27),
+          new THREE.Vector3(-44, 1, 77),
+          new THREE.Vector3(-49, 1, 219),//
+          new THREE.Vector3(-134, 1, 309),
+          new THREE.Vector3(-155, 1, 373),
+          new THREE.Vector3(-110, 1, 412),
+          new THREE.Vector3(-32, 1, 406),
+          new THREE.Vector3(12, 1, 412),
+          new THREE.Vector3(37, 1, 304) // Último punto = winCoordinates
         ],
-        enemySpeed: 0.2 // Velocidad del enemigo
+        enemySpeed: 0.5 // Velocidad del enemigo
       }
     };
     
@@ -279,8 +282,8 @@
         }); 
         geometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
         material = new THREE.LineBasicMaterial({ color: 0xff0000 });
-        routeVisualization = new THREE.Line(geometry, material);
-        scene.add(routeVisualization);
+        // routeVisualization = new THREE.Line(geometry, material);
+        // scene.add(routeVisualization);
 
       }
     );
