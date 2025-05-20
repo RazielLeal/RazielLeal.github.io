@@ -28,17 +28,29 @@
       map1: {
         cityModel: "./3D/n64_moo_moo_farm.glb",
         cityScale: 0.08,
-        cityPosition: { x: 85, y: 0, z: 100 },
+        cityPosition: { x: 85, y: -1, z: 100 },
         toyotaStartPosition: { x: 85, y: 1, z: 98 },
         winCoordinates: { x: 154.76, y: 1, z: 218.49 },
-        winRadius: 5, // how close the player needs to get to win
-        timeLimit: 60, // Time limit in seconds
+        winRadius: 5, 
+        timeLimit: 60, 
         personajes: [
           { model: "./3D/Mujer.glb", position: { x: 9, y: 0, z: -20 } },
           { model: "./3D/woman.glb", position: { x: 9, y: 0, z: -70 } },
           { model: "./3D/Hombre.glb", position: { x: -3, y: 0, z: -30 } },
           { model: "./3D/Man.glb", position: { x: 4, y: 0, z: -80 } }
-        ]
+        ],
+        enemyPath: [ // 🔥 Nueva ruta del enemigo
+          new THREE.Vector3(85, 1, 98),   
+          new THREE.Vector3(84, 1, 26),  
+          new THREE.Vector3(90, 1, -37),  
+          new THREE.Vector3(168, 1, -66),
+          new THREE.Vector3(230, 1, 13),
+          new THREE.Vector3(212, 1, 33),
+          new THREE.Vector3(227, 1, 102),
+          new THREE.Vector3(222, 1, 187),
+          new THREE.Vector3(154.76, 1, 218.49) // Último punto = winCoordinates
+        ],
+        enemySpeed: 0.3 // Velocidad del enemigo
       },
       map2: {
         cityModel: "./3D/city.glb", // You would need to create this file
@@ -53,7 +65,20 @@
           { model: "./3D/woman.glb", position: { x: -20, y: 0, z: -50 } },
           { model: "./3D/Hombre.glb", position: { x: 30, y: 0, z: -20 } },
           { model: "./3D/Man.glb", position: { x: -10, y: 0, z: -40 } }
-        ]
+        ],
+                enemyPath: [ // 🔥 Nueva ruta del enemigo
+          new THREE.Vector3(85, 1, 98),   
+          new THREE.Vector3(86, 1, -12),  
+          new THREE.Vector3(26, 1, -7),  
+          new THREE.Vector3(-269, 1, -7),
+          new THREE.Vector3(-263, 1, -67),
+          new THREE.Vector3(-232, 1, -77),
+          new THREE.Vector3(-235, 1, -120),
+          new THREE.Vector3(-19, 1, -117),
+          new THREE.Vector3(-30, 1, -30) // Último punto = winCoordinates
+        ],
+        enemySpeed: 0.4 // Velocidad del enemigo
+
       },
       map3: {
         cityModel: "./3D/n64_kalimari_desert.glb", // You would need to create this file
@@ -68,7 +93,19 @@
           { model: "./3D/woman.glb", position: { x: -15, y: 0, z: -30 } },
           { model: "./3D/Hombre.glb", position: { x: 25, y: 0, z: -40 } },
           { model: "./3D/Man.glb", position: { x: -5, y: 0, z: -60 } }
-        ]
+        ],
+                        enemyPath: [ // 🔥 Nueva ruta del enemigo
+          new THREE.Vector3(85, 1, 98),   
+          new THREE.Vector3(86, 1, -12),  
+          new THREE.Vector3(26, 1, -7),  
+          new THREE.Vector3(-269, 1, -7),
+          new THREE.Vector3(-263, 1, -67),
+          new THREE.Vector3(-232, 1, -77),
+          new THREE.Vector3(-235, 1, -120),
+          new THREE.Vector3(-19, 1, -117),
+          new THREE.Vector3(-30, 1, -30) // Último punto = winCoordinates
+        ],
+        enemySpeed: 0.2 // Velocidad del enemigo
       }
     };
     
@@ -217,8 +254,12 @@
     );
 
     let enemigo; // Segundo carro
-    const enemySpeed = 0.05; // Velocidad constante del enemigo
 
+    let pathLine;
+    let pathPoints;
+    let geometry;
+    let material;
+    let routeVisualization;
     loaderGLTF.load(
       "./3D/toyota-chaser.glb", // Cambia por el modelo del segundo auto
       function (model) {
@@ -231,6 +272,16 @@
           currentMapConfig.toyotaStartPosition.z + 5
         );
         scene.add(enemigo);
+
+        pathLine = new THREE.CatmullRomCurve3(enemyPath);
+        const pathPoints = pathLine.getPoints(50).map(point => {
+            return new THREE.Vector3(point.x, point.y + 3, point.z); // 🔥 Elevar 3 unidades en Y
+        }); 
+        geometry = new THREE.BufferGeometry().setFromPoints(pathPoints);
+        material = new THREE.LineBasicMaterial({ color: 0xff0000 });
+        routeVisualization = new THREE.Line(geometry, material);
+        scene.add(routeVisualization);
+
       }
     );
 
@@ -330,24 +381,27 @@
     const acceleration = 0.01;
     const turnSpeed = 0.03;
 
+    const enemyPath = currentMapConfig.enemyPath;
+    let currentWaypointIndex = 0; // 🔥 Indice actual del enemigo en la ruta
+
+    //FUNCION ANIMATE
     function animate() {
-      if (enemigo && !gameOver && !gameWon) {
-      const goal = new THREE.Vector3(
-        currentMapConfig.winCoordinates.x,
-        currentMapConfig.winCoordinates.y,
-        currentMapConfig.winCoordinates.z
-      );
+        if (enemigo && !gameOver && !gameWon) {
+            if (currentWaypointIndex < enemyPath.length) {
+                const goal = enemyPath[currentWaypointIndex]; // 🔥 Usar el waypoint correcto
+                const direction = new THREE.Vector3().subVectors(goal, enemigo.position).normalize();
+                enemigo.position.add(direction.multiplyScalar(currentMapConfig.enemySpeed)); // 🔥 Usar la velocidad del enemigo
 
-      const direction = new THREE.Vector3().subVectors(goal, enemigo.position).normalize();
-      enemigo.position.add(direction.multiplyScalar(enemySpeed));
-
-      // Verifica si el enemigo llegó a la meta
-      const distanceToGoal = enemigo.position.distanceTo(goal);
-      if (distanceToGoal < currentMapConfig.winRadius) {
-        gameOver = true;
-        showGameOver();
-      }
-}
+                // ✅ Verificar si el enemigo llegó al waypoint actual
+                const distanceToGoal = enemigo.position.distanceTo(goal);
+                if (distanceToGoal < 2) { 
+                    currentWaypointIndex++; // 🔥 Pasar al siguiente waypoint
+                }
+            } else {
+                gameOver = true;
+                showGameOver();
+            }
+        }
 
 
 
