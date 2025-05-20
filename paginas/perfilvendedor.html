@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markline - Perfil Vendedor</title>
+  <link rel="stylesheet" href="perfilvendedor.css">
+  <style>
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .producto-simple {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      background: white;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .producto-simple:hover {
+      transform: translateY(-5px);
+    }
+
+    .producto-simple h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.1em;
+      color: #333;
+      text-align: center;
+    }
+
+    .producto-simple .precio {
+      font-weight: bold;
+      color: #2a9d8f;
+      margin: 10px 0 0 0;
+      font-size: 1.2em;
+    }
+
+    .no-products {
+      text-align: center;
+      color: #666;
+      padding: 20px;
+      grid-column: 1 / -1;
+    }
+
+    .error {
+      color: #e76f51;
+      padding: 20px;
+      text-align: center;
+      grid-column: 1 / -1;
+    }
+
+    .sin-imagen {
+      color: #777;
+      font-size: 0.9em;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="">Markline</a></h1>
+    <nav>
+      <button class="botones" onclick="location.href='publicar.html'">Publicar Producto</button>
+
+    </nav>
+
+  </header>
+
+  <section class="perfil-container">
+    <div class="perfil-info">
+      <img id="profile-photo" src="avatar.png" alt="Avatar" class="avatar">
+      <div class="datos">
+        <h2 id="user-name">Nickname</h2>
+        <p id="user-email">Email: </p>
+        <p id="register-date">Fecha de Registro: </p>
+      </div>
+      <div class="containerdebotones">
+        <button class="botonesgrandes" id="mensajes-btn">
+            <img src="avatar2.png" alt="Mensajes">
+              <h3>MENSAJES PENDIENTES</h3>
+            <span id="notificacion" class="notificacion hidden">3</span> <!-- Número de mensajes sin leer -->
+        </button>
+        
+        <button class="botones" id="cerrar-btn">Cerrar Sesión</button>
+
+      </div>
+    </div>
+
+    <div class="publicaciones">
+      <h2>Mis Productos</h2>
+      <div class="filtros">
+        <select id="filtro-status" class="filtro-select">
+          <option value="todos">Todos los estados</option>
+          <option value="Aceptado">Aceptados</option>
+          <option value="No aceptado">No aceptados</option>
+          <option value="Rechazado">Rechazados</option>
+          <option value="Eliminado">Eliminados</option>
+        </select>
+        
+        <select id="filtro-categoria" class="filtro-select">
+          <option value="todas">Todas las categorías</option>
+        </select>
+        
+        <select id="filtro-orden" class="filtro-select">
+          <option value="recientes">Más recientes</option>
+          <option value="antiguos">Más antiguos</option>
+          <option value="precio_asc">Precio: menor a mayor</option>
+          <option value="precio_desc">Precio: mayor a menor</option>
+        </select>
+      </div>
+      <div class="productos-grid" id="productos">
+        <!-- Los productos se cargarán dinámicamente aquí -->
+      </div>
+      <div class="paginacion">
+        <button id="prev-btn" disabled>&larr; Anterior</button>
+        <span id="page-info">Página 1</span>
+        <button id="next-btn">Siguiente &rarr;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal de chats pendientes -->
+  <div id="chat-pendientes-modal" class="modal-lateral hidden">
+      <div class="modal-header">
+          <h2>Chats Pendientes</h2>
+          <button class="botones" id="chat-pendientes-close">X</button>
+      </div>
+      <div id="chat-pendientes-body" class="modal-body">
+          <p style="color:#888;text-align:center;margin-top:30px;">Cargando chats...</p>
+      </div>
+  </div>
+
+  <!-- Modal del chat seleccionado -->
+<div id="chat-modal" class="modal-chat hidden">
+    <div class="modal-header">
+        <h2 id="chat-title">Chat con <span id="chat-usuario"></span></h2>
+        <button class="botones" id="chat-close">X</button>
+    </div>
+    <div id="chat-body" class="modal-body">
+        <p style="color:#888;text-align:center;margin-top:30px;">Cargando mensajes...</p>
+    </div>
+    <div class="modal-footer">
+        <input type="text" id="chat-input" placeholder="Escribe tu mensaje..." autocomplete="off" />
+        <button id="chat-send" class="botones">Enviar</button>
+        <br>
+    </div>
+    
+    <button id="cotizacion-btn" class="botones">Ingresa datos de cotización</button>
+</div>
+
+<!-- Modal de cotización -->
+<div class="modal-cotizacion-container hidden">
+  <div id="cotizacion-modal" class="modal-cotizacion hidden">
+    <div class="modal-header">
+      <h2>Cotización para <span id="cotizacion-producto"></span></h2>
+      <button class="botones" id="cotizacion-close">X</button>
+    </div>
+    <div class="modal-body">
+      <label for="cotizacion-precio">Precio cotizado:</label>
+      <input type="number" id="cotizacion-precio" min="1" step="0.01" required>
+      <label for="cotizacion-detalles">Detalles de la cotización:</label>
+      <textarea id="cotizacion-detalles" required></textarea>
+    </div>
+    <div class="modal-footer">
+      <button id="cotizacion-enviar" class="botones">Enviar Cotización</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="cotizacion.js"></script>
+<script src="perfilvendedor.js"></script>
+</body>
+</html>
