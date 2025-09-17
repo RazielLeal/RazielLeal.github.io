@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'Adumu';
+    src: url('fuentes/Adumu-Regular.woff2') format('woff2'),
+         url('fuentes/Adumu-Regular.woff') format('woff');
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Adumu', sans-serif;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e8b57; /* Color de fondo base */
+  overflow: hidden;
+  position: relative;
+  background-image: url('fondo.png');
+  background-position: center;
+}
+
+/* Contenedor principal de los botones y título */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10; /* Eleva el contenedor por encima de las imágenes de fondo */
+}
+
+/* Título */
+.titulo {
+    font-family: 'Adumu', sans-serif;
+  font-size: 8vh;
+  color: #fffe9b;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.849);
+  margin-bottom: 20px;
+}
+
+/* Contenedor de botones */
+.botones-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #4683b493;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton {
+    font-family: 'Adumu', sans-serif;
+  font-size: 5vh;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  color: #fffe9b;
+  background-color: transparent;
+  border-radius: 10px;
+  border: none;
+  transition: background-color 0.3s;
+  font-weight: bold;
+}
+
+.boton:hover {
+  background-color: #5f9ea0;
+}
+.boton::after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #fffe9b, transparent);
+    margin-top: 5px;
+}
+
+/* Botón de ayuda */
+.boton-ayuda {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #8a2be2;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 2.5em;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10; /* Eleva este botón por encima de las imágenes */
+}
+
+/* Nuevos estilos para las imágenes de fondo */
+.imagen-fondo-superior {
+  position: absolute;
+  top: -20vh;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Ocupa la mitad superior de la pantalla */
+  background-image: url('adorno.svg');
+  background-size: 110% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1; /* Se mantiene en el fondo */
+  transform: rotate(180deg);
+}
+
+.imagen-fondo-inferior {
+  position: absolute;
+  bottom: -20vh;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background-image: url('adorno.svg');
+  background-size: 110% auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  /* transform: rotate(180deg); ¡Aquí está el cambio! */
+}
