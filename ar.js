@@ -1,93 +1,107 @@
-    //   document.addEventListener('DOMContentLoaded', () => {
-    //     console.log('✅ Script iniciado.');
+//  document.addEventListener('DOMContentLoaded', () => {
+//   console.log('✅ Script `ar.js` iniciado.');
 
+//   const nombresPaises = [
+//     "waos",         // targetIndex: 0
+//     "Estados Unidos", // targetIndex: 1
+//     "otro",         // targetIndex: 2
+//     "Brasil",         // targetIndex: 3
+//     "Argentina",      // targetIndex: 4
+//     "España",         // targetIndex: 5
+//     "Canada",        // targetIndex: 6
+//     "Alemania",       // targetIndex: 7
+//     "Italia",         // targetIndex: 8
+//     "Japón",          // targetIndex: 9
+//     "China",          // targetIndex: 10
+//     "Mexico",      // targetIndex: 11
+//     "Sudáfrica"       // targetIndex: 12
+//   ];
 
-    //     const nombresPaises = [
-    //     "1","2","3","4","5","6",
-    //     "Canada","8","9","10","11","Mexico","13",];
-    //     const sceneEl = document.querySelector('a-scene');
-    //     const countryUi = document.querySelector('#nombre-pais-ui');
-    //     const countryNameEl = document.querySelector('#nombre-pais'); // Seleccionamos el <p>
+//   // --- Seleccionar elementos del DOM ---
+//   const sceneEl = document.querySelector('a-scene');
+//   const countryUi = document.querySelector('#nombre-pais-ui');
+//   const countryNameEl = document.querySelector('#nombre-pais');
 
-    //     // --- Verificar que todos los elementos existen ---
-    //     if (!sceneEl || !countryUi || !countryNameEl) {
-    //       console.error('❌ ¡ERROR! Falta uno o más elementos esenciales (a-scene, #nombre-pais-ui, o #nombre-pais). Revisa tu HTML.');
-    //       return; // Detiene el script si algo falta
-    //     }
-    //     console.log('✅ Elementos HTML encontrados correctamente.');
-    
-    //     sceneEl.addEventListener('targetFound', event => {      
-    //       console.log('🎯 ¡Target detectado! Añadiendo la clase .show');
-    //       countryUi.classList.add('show')
-          
-    //       if (event.detail && event.detail.target) {
-    //           console.log("👍 Datos del target válidos. Mostrando UI.");
+//   // --- Verificar que todos los elementos existen ---
+//   if (!sceneEl || !countryUi || !countryNameEl) {
+//     console.error('❌ ¡ERROR! Falta uno o más elementos esenciales (a-scene, #nombre-pais-ui, o #nombre-pais).');
+//     return;
+//   }
+//   console.log('✅ Elementos HTML encontrados correctamente.');
 
-    //           // Obtenemos el índice y el nombre del país
-    //           const targetIndex = event.detail.target.index;
-    //           const nombreDelPais = nombresPaises[targetIndex];
+//   // --- Lógica de Eventos ---
+  
+//   sceneEl.addEventListener('targetFound', event => {
+//     // CAMBIO CLAVE: Obtenemos el targetIndex directamente del componente del target.
+//     const targetIndex = event.target.components['mindar-image-target'].data.targetIndex;
 
-    //           // AHORA sí, actualizamos el texto y hacemos visible la UI
-    //           countryNameEl.textContent = nombreDelPais;
-    //           countryUi.classList.add('show');
-    //         } else {
-    //           console.log("🤔 Evento 'targetFound' disparado sin datos del target. Ignorando.");
-    //           console.log(event.target);
-    //         }
-    //       });
+//     // Verificamos si el índice es un número válido.
+//     if (typeof targetIndex === 'number') {
+//       const nombreDelPais = nombresPaises[targetIndex];
 
-    //     sceneEl.addEventListener('targetLost', event => {
-    //       console.log('💨 Target perdido. Quitanto la clase .show');
-    //       countryUi.classList.remove('show');
-    //     });
+//       console.log(`👍 Target válido encontrado. Índice: ${targetIndex}, País: ${nombreDelPais}`);
 
+//       countryNameEl.textContent = nombreDelPais;
+//       countryUi.classList.add('show');
+//     }
+//   });
 
+//   sceneEl.addEventListener('targetLost', event => {
+//     console.log('💨 Target perdido. Ocultando UI.');
+//     countryUi.classList.remove('show');
+//   });
+// });
 
-
-
-
-    //     // 1. VERIFICAR LA SELECCIÓN DEL ELEMENTO
-    //     if (countryUi) {
-    //       console.log('✅ Elemento de la UI encontrado:', countryUi);
-    //     } else {
-    //       console.error('❌ ¡ERROR! No se encontró el elemento con id="nombre-pais-ui". Revisa tu HTML.');
-    //       return; 
-    //     }
-
-    //     if (!sceneEl) {
-    //       console.error('❌ ¡ERROR! No se encontró la escena <a-scene>.');
-    //       return;
-    //     }
-    //   });
-
-
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   console.log('✅ Script `ar.js` iniciado.');
 
   const nombresPaises = [
-    "waos",         // targetIndex: 0
+    "waos",           // targetIndex: 0
     "Estados Unidos", // targetIndex: 1
-    "otro",         // targetIndex: 2
+    "otro",           // targetIndex: 2
     "Brasil",         // targetIndex: 3
     "Argentina",      // targetIndex: 4
     "España",         // targetIndex: 5
-    "Canada",        // targetIndex: 6
+    "Canada",         // targetIndex: 6
     "Alemania",       // targetIndex: 7
     "Italia",         // targetIndex: 8
     "Japón",          // targetIndex: 9
     "China",          // targetIndex: 10
-    "Mexico",      // targetIndex: 11
+    "Mexico",         // targetIndex: 11
     "Sudáfrica"       // targetIndex: 12
   ];
+
+  // --- CÓDIGO NUEVO: Base de Datos de Jugadores ---
+  const jugadoresPorPais = {
+    "Canada": [{
+      nombre: "Alphonso Davies",
+      calificacion: 5,
+      imagen: "images/davies.jpg" // Asegúrate de tener esta imagen
+    }],
+    "Mexico": [{
+      nombre: "Santiago Giménez",
+      calificacion: 4,
+      imagen: "gimenez.jpeg" // y esta también
+    }],
+    // Agrega más países y jugadores aquí
+  };
+  // ---------------------------------------------
 
   // --- Seleccionar elementos del DOM ---
   const sceneEl = document.querySelector('a-scene');
   const countryUi = document.querySelector('#nombre-pais-ui');
   const countryNameEl = document.querySelector('#nombre-pais');
 
+  // --- CÓDIGO NUEVO: Seleccionar elementos de la tarjeta ---
+  const playerCard = document.querySelector('#player-card');
+  const playerNameEl = document.querySelector('#player-name');
+  const playerImageEl = document.querySelector('#player-image');
+  const playerRatingEl = document.querySelector('#player-rating');
+  // ----------------------------------------------------
+
   // --- Verificar que todos los elementos existen ---
-  if (!sceneEl || !countryUi || !countryNameEl) {
-    console.error('❌ ¡ERROR! Falta uno o más elementos esenciales (a-scene, #nombre-pais-ui, o #nombre-pais).');
+  if (!sceneEl || !countryUi || !countryNameEl || !playerCard) { // <-- Añadimos playerCard a la verificación
+    console.error('❌ ¡ERROR! Falta uno o más elementos esenciales en el HTML.');
     return;
   }
   console.log('✅ Elementos HTML encontrados correctamente.');
@@ -95,22 +109,87 @@
   // --- Lógica de Eventos ---
   
   sceneEl.addEventListener('targetFound', event => {
-    // CAMBIO CLAVE: Obtenemos el targetIndex directamente del componente del target.
+    // --- (Esta parte de tu código no cambia) ---
     const targetIndex = event.target.components['mindar-image-target'].data.targetIndex;
-
-    // Verificamos si el índice es un número válido.
     if (typeof targetIndex === 'number') {
       const nombreDelPais = nombresPaises[targetIndex];
-
       console.log(`👍 Target válido encontrado. Índice: ${targetIndex}, País: ${nombreDelPais}`);
-
       countryNameEl.textContent = nombreDelPais;
       countryUi.classList.add('show');
+      // ---------------------------------------------
+
+      // --- CÓDIGO NUEVO: Lógica para mostrar la tarjeta ---
+      const jugadores = jugadoresPorPais[nombreDelPais];
+      if (jugadores && jugadores.length > 0) {
+        const primerJugador = jugadores[0]; // Mostramos el primer jugador de la lista
+
+        playerNameEl.textContent = primerJugador.nombre;
+        playerImageEl.setAttribute('src', primerJugador.imagen);
+        
+        // Generar y mostrar las estrellas
+        let estrellasHTML = '';
+        for (let i = 0; i < 5; i++) {
+          estrellasHTML += i < primerJugador.calificacion ? '★' : '☆';
+        }
+        playerRatingEl.innerHTML = estrellasHTML;
+
+        playerCard.classList.add('show');
+      }
+      // ----------------------------------------------------
     }
   });
 
   sceneEl.addEventListener('targetLost', event => {
     console.log('💨 Target perdido. Ocultando UI.');
     countryUi.classList.remove('show');
+    
+    // --- CÓDIGO NUEVO: Ocultar también la tarjeta ---
+    playerCard.classList.remove('show');
+    // ---------------------------------------------
+  });
+
+
+  // ---------------------------------------------
+  // MODAL DE FILTROS
+  // ---------------------------------------------
+
+  // 1. Seleccionar los nuevos elementos
+  const filtersBtn = document.querySelector('#filters-btn');
+  const filtersModal = document.querySelector('#filters-modal');
+  const closeModalBtn = document.querySelector('#close-modal-btn');
+  const filterOptions = document.querySelectorAll('.filter-option');
+  const aScene = document.querySelector('a-scene');
+
+  // 2. Abrir el modal
+  filtersBtn.addEventListener('click', () => {
+    filtersModal.classList.add('modal-visible');
+    filtersModal.classList.remove('modal-hidden'); // Opcional, dependiendo del CSS
+  });
+
+  // 3. Cerrar el modal
+  const closeModal = () => {
+    filtersModal.classList.remove('modal-visible');
+    filtersModal.classList.add('modal-hidden'); // Opcional
+  };
+
+  closeModalBtn.addEventListener('click', closeModal);
+  filtersModal.addEventListener('click', (event) => {
+    // Cierra el modal solo si se hace clic en el fondo (overlay)
+    if (event.target === filtersModal) {
+      closeModal();
+    }
+  });
+
+  // 4. Aplicar un filtro
+  filterOptions.forEach(button => {
+    button.addEventListener('click', () => {
+      const filterValue = button.dataset.filter;
+      console.log(`Aplicando filtro: ${filterValue}`);
+      
+      // Aplicamos el filtro directamente al canvas de A-Frame
+      aScene.canvas.style.filter = filterValue;
+      
+      closeModal(); // Cierra el modal después de seleccionar un filtro
+    });
   });
 });

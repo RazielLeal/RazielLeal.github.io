@@ -298,7 +298,7 @@ body {
     padding: 30px;
     border-radius: 15px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 5px 15px var(--containers_sombra);
     color: black;
     font-family: 'Adumu', sans-serif;
     font-size: 2.5vh;
@@ -324,42 +324,239 @@ body {
 }
 
 .modal-boton-si {
-  background-color: #ff4500;
+  background-color: var(--rojo);
 }
 
 .modal-boton-no {
-  background-color: #5f9ea0;
+  background-color: var(--fondo_containers);
 }
 
 .modal-boton-si:hover {
-  background-color: #e23b00;
+  background-color: var(--rojo);
 }
 
 .modal-boton-no:hover {
-  background-color: #4682b4;
+  background-color: var(--fondo_containers_hover);
 }
 
 /* =========================
    Sección: PÁGINA AR
    ========================= */
 
-
-#nombre-pais-ui {
-  position: absolute;
-  top: 5vh;
-  width: 100%;
-  text-align: center;
-  z-index: 10;
-  color: white;
-  font-family: sans-serif; /* O la fuente que prefieras */
+#nombre-pais {
+  background-color: var(--fondo_containers); /* Fondo negro con 60% de transparencia */
+  padding: 10px 25px; /* 10px arriba/abajo y 25px a los lados */
+  border-radius: 50px; /* Un valor alto para que quede bien redondeado */
+  
+  /* Propiedades que ya tenías para el texto */
+  color: var(--letras-amarillas);
   font-size: 5vh;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-  opacity: 0; /* Oculto por defecto */
-  transition: opacity 0.5s;
-  pointer-events: none;
+  margin: 0;
+}
+#nombre-pais-ui {
+    position: absolute;
+    top: 10vh;
+    width: auto;
+    text-align: center;
+    z-index: 10;
+    color: var(--letras-amarillas);
+    font-family: sans-serif; /* O la fuente que prefieras */
+    font-size: 5vh;
+    text-shadow: 2px 2px 4px var(--sombra-letras-amarillas);
+    opacity: 0; /* Oculto por defecto */
+    transition: opacity 0.5s;
+    pointer-events: none;
+    font-family: 'Adumu', sans-serif;
+    backdrop-filter: blur(5px);
 }
 
 /* Esta clase es la que añade el JavaScript para hacerlo visible */
 #nombre-pais-ui.show {
-  opacity: 1 !important;
+    opacity: 1 !important;
+}
+
+/* --- Tarjeta del Jugador --- */
+
+/* Contenedor principal de la tarjeta */
+#player-card {
+  /* --- Posición y tamaño --- */
+  position: absolute;
+  bottom: 20px; /* Se mantiene abajo */
+  width: 90vw; /* Ancho del 90% del viewport */
+  max-width: 500px; /* Un límite para que no se vea gigante en monitores */
+
+  /* --- Centrado Horizontal --- */
+  transform: translateX(-50%);
+  
+  /* --- Apariencia (sin cambios) --- */
+  background-color: var(--fondo_containers);
+  border-radius: 15px;
+  box-shadow: 0 4px 30px var(--containers_sombra);
+  backdrop-filter: blur(5px);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+
+  /* --- Transición (sin cambios) --- */
+  opacity: 0;
+  /* La propiedad transform se actualiza para la animación */
+  transition: opacity 0.5s ease, transform 0.5s ease; 
+  pointer-events: none;
+}
+
+/* Clase para mostrar la tarjeta */
+#player-card.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Imagen del jugador */
+#player-image {
+  width: 40%; /* La imagen ocupa el 40% del ancho de la tarjeta */
+  height: auto;
+  aspect-ratio: 1 / 1; /* Mantiene la imagen cuadrada */
+  object-fit: cover; /* Asegura que la imagen cubra el espacio sin deformarse */
+  border-radius: 10px;
+  box-shadow: 0 4px 30px var(--sombra-letras-amarillas);
+
+}
+
+/* Contenedor para el nombre y las estrellas */
+#player-data {
+  width: 60%; /* El resto del espacio es para los datos */
+  display: flex;
+  flex-direction: column; /* Apila el nombre y las estrellas verticalmente */
+  justify-content: center;
+  padding-left: 15px; /* Espacio entre la imagen y los datos */
+}
+
+/* Nombre del jugador */
+#player-name {
+  color: white;
+  margin: 0 0 5px 0; /* Sin margen superior/lados, 5px abajo */
+  font-family: 'MiFuenteDeportiva', sans-serif; /* Usa tu fuente personalizada */
+  font-size: 2.5vh;
+  text-transform: uppercase;
+}
+
+/* Contenedor de las estrellas */
+#player-rating {
+  color: yellow; /* Color dorado para las estrellas */
+  font-size: 2vh;
+}
+
+/* --- Estilos para Controles y Modal de Filtros --- */
+
+/* Contenedor para los botones de la esquina */
+.top-left-controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espacio entre botones */
+}
+
+/* Estilo de los botones de la esquina */
+#camera-icon-btn, #filters-btn {
+    background-color: var(--fondo_containers);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    backdrop-filter: blur(5px);
+    border: none;
+    box-shadow: 0 4px 8px var(--containers_sombra);
+    
+}
+
+#camera-icon-btn {
+  font-size: 24px; /* Icono de cámara más grande */
+}
+
+#camera-icon-btn:hover, #filters-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Fondo del Modal (overlay) */
+#filters-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Clase para mostrar el modal */
+#filters-modal.modal-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Contenido del Modal */
+.modal-content {
+  background-color: var(--fondo_containers); /* Azul oscuro */
+  color: var(--letras-amarillas);
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+}
+
+#close-modal-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Botones de opciones de filtro */
+.modal-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas */
+  gap: 10px;
+}
+
+.filter-option {
+  background-color: #3b4a61;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 15px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-option:hover {
+  background-color: #a8c1ff;
+  color: #1e293b;
 }
