@@ -171,11 +171,14 @@
 
         // 3. Escucha el evento 'targetFound' (cuando se detecta una bandera)
         sceneEl.addEventListener('targetFound', event => {
-          const targetIndex = event.detail.target.index;
-          const nombreDelPais = nombresPaises[targetIndex];
-          
-          countryNameEl.textContent = nombreDelPais;
-          countryUi.classList.add('show');
+          // ✅ AÑADIMOS ESTA CONDICIÓN DE SEGURIDAD
+          if (event.detail && event.detail.target) {
+            const targetIndex = event.detail.target.index;
+            const nombreDelPais = nombresPaises[targetIndex];
+
+            countryNameEl.textContent = nombreDelPais;
+            countryUi.classList.add('show');
+          }
         });
 
         // 4. Escucha el evento 'targetLost' (cuando se pierde la bandera)
