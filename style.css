@@ -21,7 +21,14 @@ body {
 
 :root{
     --letras-amarillas: #fffe9b;
-    --fondo-letras-amarillas: #4683b493;
+    --sombra-letras-amarillas: rgb(12, 57, 255);
+    --fondo_containers:#4683b493;
+    --fondo_containers_hover:#33388093;
+    --fondo_ayuda:#8a2be2;
+    --fondo_ayuda_hover:#7a1be2;
+    --containers_sombra: rgba(0, 0, 0, 0.432);
+    --fondo_salto:#e987ab;
+    --fondo_salto_hover:#e967ab;
 }
 /* =========================
    Sección: PÁGINA PRINCIPAL
@@ -42,9 +49,10 @@ body {
 .titulo {
     font-family: 'Adumu', sans-serif;
     font-size: 8vh;
-    color: #fffe9b;
+    color: var(--letras-amarillas);
     text-align: center;
     margin-bottom: 20px;
+    text-shadow: 2px 2px 4px var(--sombra-letras-amarillas);
 }
 
 /* Contenedor de botones */
@@ -53,7 +61,7 @@ body {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
-  background-color: #4683b493;
+  background-color: var(--fondo_containers);
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -61,6 +69,7 @@ body {
 .boton {
     font-family: 'Adumu', sans-serif;
     font-size: 5vh;
+    text-shadow: 2px 2px 4px var(--sombra-letras-amarillas);
     padding: 15px 30px;
     text-align: center;
     text-decoration: none;
@@ -73,7 +82,7 @@ body {
 }
 
 .boton:hover {
-  background-color: #5f9ea0;
+  background-color: var(--fondo_containers_hover);
 }
 .boton::after{
     content: '';
@@ -86,20 +95,27 @@ body {
 
 /* Botón de ayuda */
 .boton-ayuda {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: #8a2be2;
-  color: white;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 50px;
-  font-size: 2.5em;
-  text-decoration: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* Eleva este botón por encima de las imágenes */
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--fondo_ayuda);
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 2.5em;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10; /* Eleva este botón por encima de las imágenes */
+    text-shadow: 2px 2px 4px var(--sombra-letras-amarillas);
+    transition: transform 0.3s ease;
+}
+
+.boton-ayuda:hover {
+  background-color: var(--fondo_ayuda_hover);
+  transform: scale(1.1); /* Solo la función de escala */
 }
 
 /* Nuevos estilos para las imágenes de fondo */
@@ -137,18 +153,17 @@ body {
 
    /* Estilos para el nuevo contenedor del título */
 .titulo-container {
-  background-color: #4682b4; /* Color de recuadro */
+  background-color: var(--fondo_containers); /* Color de recuadro */
   padding: 15px 30px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.432);
   margin-bottom: 20px;
 }
 
 .titulo {
   font-size: 8vh;
-  color: #fffacd;
+  color: var(--letras-amarillas);
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
   margin: 0; /* Eliminar el margen por defecto del h1 */
 }
 
@@ -158,16 +173,17 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 15px;
-  background-color: #4682b4;
+  background-color: var(--fondo_containers);
   padding: 20px;
   border-radius: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px var(--containers_sombra);
   width: 80vw;
   max-width: 500px;
+  
 }
 
 .pregunta-container {
-  background-color: white;
+  background-color:var(--fondo_containers);
   padding: 15px;
   border-radius: 10px;
   width: 90%;
@@ -178,7 +194,7 @@ body {
   font-family: 'Adumu', sans-serif;
   font-size: 2.5vh;
   margin: 0;
-  color: #333;
+  color: var(--letras-amarillas);
 }
 
 .respuestas-container {
@@ -194,15 +210,14 @@ body {
   padding: 15px 30px;
   text-align: center;
   text-decoration: none;
-  color: #fff;
-  background-color: #5f9ea0; /* Un verde más suave para los botones de respuesta */
+  color: var(--letras-amarillas);
+  background-color: var(--fondo_containers); /* Un verde más suave para los botones de respuesta */
   border-radius: 10px;
-  border: 2px solid white;
   transition: background-color 0.3s;
 }
 
 .respuesta-boton:hover {
-  background-color: #4682b4;
+  background-color: var(--fondo_containers_hover);
 }
 
 /* Nuevo botón "Saltar" */
@@ -210,15 +225,45 @@ body {
   position: absolute;
   bottom: 10vh; /* Se puede ajustar la posición vertical */
   right: 50%;
-  transform: translateX(50%); /* Centra horizontalmente */
   font-family: 'Adumu', sans-serif;
   font-size: 2.5vh;
   padding: 15px 40px;
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: #8a2be2;
+  background-color: var(--fondo_salto);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   z-index: 10;
+  transform: translateX(50%); /*Centra horizontalmente */
+  transition: background-color 0.3s;
+}
+
+.boton-saltar:hover {
+  background-color: var(--fondo_salto_hover);
+  
+}
+
+/* Botón de cerrar (X) */
+.boton-cerrar {
+  position: absolute;
+  top: 20px; /* Posicionado desde la parte superior */
+  right: 20px; /* Posicionado desde la parte derecha */
+  width: 50px;
+  height: 50px;
+  background-color: #ff4500; /* Un color distintivo, como el naranja */
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px; /* Centra verticalmente el contenido */
+  font-size: 2.5em; /* Tamaño grande para la X */
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.boton-cerrar:hover {
+  background-color: #e23b00; /* Oscurece el color al pasar el cursor */
+  transform: scale(1.1); /* Efecto de agrandar al hacer hover */
 }
