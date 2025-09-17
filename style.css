@@ -346,20 +346,20 @@ body {
 
 #nombre-pais-ui {
   position: absolute;
-  top: 5vh; /* Ajusta la distancia desde arriba */
+  top: 5vh;
   width: 100%;
   text-align: center;
-  z-index: 15; /* Asegúrate de que esté por encima de todos los elementos */
-  color: white; /* Color del texto */
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  font-family: 'Adumu', sans-serif;
+  z-index: 10;
+  color: white;
+  font-family: sans-serif; /* O la fuente que prefieras */
   font-size: 5vh;
-  opacity: 0; /* Por defecto, el texto está oculto */
-  transition: opacity 0.5s ease-in-out; /* Animación de aparición/desaparición */
-  pointer-events: none; /* Esto evita que el texto bloquee clics */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+  opacity: 0; /* Oculto por defecto */
+  transition: opacity 0.5s;
+  pointer-events: none;
 }
 
-/* Clases para mostrar y ocultar el texto */
+/* Esta clase es la que añade el JavaScript para hacerlo visible */
 #nombre-pais-ui.show {
-  opacity: 1;
+  opacity: 1 !important;
 }
