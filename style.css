@@ -1,7 +1,7 @@
 @font-face {
     font-family: 'Adumu';
-    src: url('fuentes/Adumu-Regular.woff2') format('woff2'),
-         url('fuentes/Adumu-Regular.woff') format('woff');
+    src: url('fuentes/adumu-webfont.woff2') format('woff2'),
+         url('fuentes/adumu-webfont.woff') format('woff');
 }
 body {
   margin: 0;
@@ -19,6 +19,15 @@ body {
   background-position: center;
 }
 
+:root{
+    --letras-amarillas: #fffe9b;
+    --fondo-letras-amarillas: #4683b493;
+}
+/* =========================
+   Sección: PÁGINA PRINCIPAL
+   ========================= */
+
+
 /* Contenedor principal de los botones y título */
 .container {
   display: flex;
@@ -32,11 +41,10 @@ body {
 /* Título */
 .titulo {
     font-family: 'Adumu', sans-serif;
-  font-size: 8vh;
-  color: #fffe9b;
-  text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.849);
-  margin-bottom: 20px;
+    font-size: 8vh;
+    color: #fffe9b;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 /* Contenedor de botones */
@@ -52,16 +60,16 @@ body {
 
 .boton {
     font-family: 'Adumu', sans-serif;
-  font-size: 5vh;
-  padding: 15px 30px;
-  text-align: center;
-  text-decoration: none;
-  color: #fffe9b;
-  background-color: transparent;
-  border-radius: 10px;
-  border: none;
-  transition: background-color 0.3s;
-  font-weight: bold;
+    font-size: 5vh;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    color: #fffe9b;
+    background-color: transparent;
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.3s;
+    font-weight: bold;
 }
 
 .boton:hover {
@@ -121,4 +129,96 @@ body {
   background-repeat: no-repeat;
   z-index: 1;
   /* transform: rotate(180deg); ¡Aquí está el cambio! */
+}
+
+/* =========================
+   Sección: PAGINA TRIVIA
+   ========================= */
+
+   /* Estilos para el nuevo contenedor del título */
+.titulo-container {
+  background-color: #4682b4; /* Color de recuadro */
+  padding: 15px 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.titulo {
+  font-size: 8vh;
+  color: #fffacd;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  margin: 0; /* Eliminar el margen por defecto del h1 */
+}
+
+/* Estilos para el contenedor de la trivia */
+.trivia-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  background-color: #4682b4;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 80vw;
+  max-width: 500px;
+}
+
+.pregunta-container {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  width: 90%;
+  text-align: center;
+}
+
+.pregunta {
+  font-family: 'Adumu', sans-serif;
+  font-size: 2.5vh;
+  margin: 0;
+  color: #333;
+}
+
+.respuestas-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.respuesta-boton {
+  font-family: 'Adumu', sans-serif;
+  font-size: 2.5vh;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #5f9ea0; /* Un verde más suave para los botones de respuesta */
+  border-radius: 10px;
+  border: 2px solid white;
+  transition: background-color 0.3s;
+}
+
+.respuesta-boton:hover {
+  background-color: #4682b4;
+}
+
+/* Nuevo botón "Saltar" */
+.boton-saltar {
+  position: absolute;
+  bottom: 10vh; /* Se puede ajustar la posición vertical */
+  right: 50%;
+  transform: translateX(50%); /* Centra horizontalmente */
+  font-family: 'Adumu', sans-serif;
+  font-size: 2.5vh;
+  padding: 15px 40px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  background-color: #8a2be2;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+  z-index: 10;
 }
