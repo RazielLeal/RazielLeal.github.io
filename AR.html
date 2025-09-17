@@ -1,4 +1,3 @@
-
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
     <style>
-      #example-scanning-overlay{
+      #example-scanning-overlay {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -20,70 +19,63 @@
         bottom: 0;
         background: transparent;
         z-index: 2;
-
       }
       @media (min-aspect-ratio: 1/1) {
         #example-scanning-overlay .inner {
-        width: 50vh;
-        height: 50vh;
+          width: 50vh;
+          height: 50vh;
         }
       }
       @media (max-aspect-ratio: 1/1) {
         #example-scanning-overlay .inner {
-        width: 80vw;
-        height: 80vw;
+          width: 80vw;
+          height: 80vw;
         }
-      } 
+      }
 
       #example-scanning-overlay .inner {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      background:
-  	  linear-gradient(to right, white 10px, transparent 10px) 0 0,
-	    linear-gradient(to right, white 10px, transparent 10px) 0 100%,
-	    linear-gradient(to left, white 10px, transparent 10px) 100% 0,
-	    linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
-	    linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
-	    linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
-	    linear-gradient(to top, white 10px, transparent 10px) 0 100%,
-	    linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
-	    background-repeat: no-repeat;
-	    background-size: 40px 40px;      
-    }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(to right, white 10px, transparent 10px) 0 0, linear-gradient(to right, white 10px, transparent 10px) 0 100%, linear-gradient(to left, white 10px, transparent 10px) 100% 0, linear-gradient(to left, white 10px, transparent 10px) 100% 100%, linear-gradient(to bottom, white 10px, transparent 10px) 0 0, linear-gradient(to bottom, white 10px, transparent 10px) 100% 0, linear-gradient(to top, white 10px, transparent 10px) 0 100%, linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+        background-repeat: no-repeat;
+        background-size: 40px 40px;
+      }
 
-    #example-scanning-overlay.hidden {
-      display: none;
-    }
+      #example-scanning-overlay.hidden {
+        display: none;
+      }
 
-    #example-scanning-overlay img {
-      opacity: 1;
-      width: 100%;
-      align-self: center;
-      margin: 0px;
-      padding: 0px;
-    }
+      #example-scanning-overlay img {
+        opacity: 1;
+        width: 100%;
+        align-self: center;
+        margin: 0px;
+        padding: 0px;
+      }
 
-    #example-scanning-overlay .inner .scanline{
-      position:absolute;
-      width: 100%;
-      height: 10px;
-      background: white;
-      animation: move 2s linear infinite;
-    }
-    @keyframes move {
-      0%, 100% {top: 0%}
-      50% { top: calc(100% - 10px) }
-    }
-      
+      #example-scanning-overlay .inner .scanline {
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background: white;
+        animation: move 2s linear infinite;
+      }
+      @keyframes move {
+        0%,
+        100% {
+          top: 0%;
+        }
+        50% {
+          top: calc(100% - 10px);
+        }
+      }
     </style>
   </head>
 
   <body>
-
     <a href="index.html" class="boton-cerrar" style="position: absolute; top: 20px; right: 20px; z-index: 10;">×</a>
-
 
     <div id="example-scanning-overlay">
       <div class="inner">
@@ -92,7 +84,17 @@
       </div>
     </div>
 
-    <a-scene mindar-image=" uiScanning: #example-scanning-overlay; filterBeta: 10; imageTargetSrc: ./banderas.mind; maxTrack: 2" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <div id="nombre-pais-ui">
+      <p id="nombre-pais"></p>
+    </div>
+
+    <a-scene
+      mindar-image=" uiScanning: #example-scanning-overlay; filterBeta: 10; imageTargetSrc: ./banderas.mind; maxTrack: 2"
+      color-space="sRGB"
+      renderer="colorManagement: true, physicallyCorrectLights"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false"
+    >
       <a-assets>
         <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
         <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
@@ -102,57 +104,85 @@
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model rotation="0 -90 0 " position="-0.2 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+        <a-gltf-model rotation="0 -90 0 " position="-0.2 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" animation-mixer></a-gltf-model>
       </a-entity>
-      
       <a-entity mindar-image-target="targetIndex: 2">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 3">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+       <a-entity mindar-image-target="targetIndex: 3">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 4">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+       <a-entity mindar-image-target="targetIndex: 4">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 5">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+       <a-entity mindar-image-target="targetIndex: 5">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 6">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+       <a-entity mindar-image-target="targetIndex: 6">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 7">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+       <a-entity mindar-image-target="targetIndex: 7">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-      
-      <a-entity mindar-image-target="targetIndex: 8">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+       <a-entity mindar-image-target="targetIndex: 8">
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-
       <a-entity mindar-image-target="targetIndex: 9">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-
       <a-entity mindar-image-target="targetIndex: 10">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-
       <a-entity mindar-image-target="targetIndex: 11">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-
       <a-entity mindar-image-target="targetIndex: 12">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer>
+        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
-
     </a-scene>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. Define los nombres de los países en el orden correcto
+        // IMPORTANTE: El orden debe coincidir con el de tu archivo banderas.mind
+        const nombresPaises = [
+          "Canadá",     // targetIndex: 0
+          "Estados Unidos", // targetIndex: 1 (Ejemplo, reemplaza con el tuyo)
+          "México",     // targetIndex: 2 (Ejemplo, reemplaza con el tuyo)
+          "Brasil",     // targetIndex: 3 (Ejemplo, reemplaza con el tuyo)
+          "Argentina",  // targetIndex: 4 (Ejemplo, reemplaza con el tuyo)
+          "España",     // targetIndex: 5 (Ejemplo, reemplaza con el tuyo)
+          "Francia",    // targetIndex: 6 (Ejemplo, reemplaza con el tuyo)
+          "Alemania",   // targetIndex: 7 (Ejemplo, reemplaza con el tuyo)
+          "Italia",     // targetIndex: 8 (Ejemplo, reemplaza con el tuyo)
+          "Japón",      // targetIndex: 9 (Ejemplo, reemplaza con el tuyo)
+          "China",      // targetIndex: 10 (Ejemplo, reemplaza con el tuyo)
+          "Australia",  // targetIndex: 11 (Ejemplo, reemplaza con el tuyo)
+          "Sudáfrica"   // targetIndex: 12 (Ejemplo, reemplaza con el tuyo)
+        ];
+
+        // 2. Selecciona los elementos necesarios del DOM
+        const sceneEl = document.querySelector('a-scene');
+        const countryUi = document.querySelector('#nombre-pais-ui');
+        const countryNameEl = document.querySelector('#nombre-pais');
+
+        // 3. Escucha el evento 'targetFound' (cuando se detecta una bandera)
+        sceneEl.addEventListener('targetFound', event => {
+          const targetIndex = event.detail.target.index;
+          const nombreDelPais = nombresPaises[targetIndex];
+          
+          countryNameEl.textContent = nombreDelPais;
+          countryUi.classList.add('show');
+        });
+
+        // 4. Escucha el evento 'targetLost' (cuando se pierde la bandera)
+        sceneEl.addEventListener('targetLost', event => {
+          countryUi.classList.remove('show');
+        });
+      });
+    </script>
   </body>
 </html>
