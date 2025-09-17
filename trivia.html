@@ -55,5 +55,36 @@
         </div>
         <a href="#" class="boton-saltar">Saltar</a>
         <a href="#" class="boton-cerrar">×</a>
+
+        <div id="modal-cerrar" class="modal-overlay">
+        <div class="modal-contenido">
+            <p>Deseas salir?</p>
+            <div class="modal-botones">
+                <a href="index.html" class="modal-boton-si">Sí</a>
+                <button class="modal-boton-no">No</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Obtener los elementos del DOM
+        const botonCerrar = document.querySelector('.boton-cerrar');
+        const modal = document.getElementById('modal-cerrar');
+        const botonNo = document.querySelector('.modal-boton-no');
+
+        // Función para mostrar el modal
+        function mostrarModal() {
+            modal.classList.add('show');
+        }
+
+        // Función para ocultar el modal
+        function ocultarModal() {
+            modal.classList.remove('show');
+        }
+
+        // Eventos de click
+        botonCerrar.addEventListener('click', mostrarModal);
+        botonNo.addEventListener('click', ocultarModal);
+    </script>
   </body>
 </html>

@@ -220,28 +220,29 @@ body {
   background-color: var(--fondo_containers_hover);
 }
 
-/* Nuevo botón "Saltar" */
+
+/* Estilos para el nuevo botón "Saltar" (estado normal) */
 .boton-saltar {
   position: absolute;
-  bottom: 10vh; /* Se puede ajustar la posición vertical */
+  bottom: 10vh;
   right: 50%;
+  transform: translateX(50%); /* Solo se aplica aquí para el centrado inicial */
   font-family: 'Adumu', sans-serif;
   font-size: 2.5vh;
   padding: 15px 40px;
   text-align: center;
   text-decoration: none;
   color: white;
-  background-color: var(--fondo_salto);
+  background-color: #8a2be2;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
   z-index: 10;
-  transform: translateX(50%); /*Centra horizontalmente */
-  transition: background-color 0.3s;
+  transition: transform 0.3s ease;
 }
 
+/* Animación al pasar el cursor */
 .boton-saltar:hover {
-  background-color: var(--fondo_salto_hover);
-  
+  transform: scale(1.1) translateX(50%); /* Ambas transformaciones en un solo lugar */
 }
 
 /* Botón de cerrar (X) */
@@ -267,3 +268,75 @@ body {
   background-color: #e23b00; /* Oscurece el color al pasar el cursor */
   transform: scale(1.1); /* Efecto de agrandar al hacer hover */
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex; /* Mantenemos 'flex' para el posicionamiento */
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+
+    /* Propiedades para la animación */
+    opacity: 0; /* Oculto por defecto */
+    visibility: hidden; /* No es visible ni interactivo */
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.modal-overlay.show {
+    opacity: 1; /* Se hace visible */
+    visibility: visible;
+}
+
+.modal-contenido {
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: black;
+    font-family: 'Adumu', sans-serif;
+    font-size: 2.5vh;
+}
+.modal-botones {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.modal-boton-si,
+.modal-boton-no {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Adumu', sans-serif;
+  text-decoration: none;
+  color: white;
+  font-size: 2vh;
+  transition: background-color 0.3s ease;
+}
+
+.modal-boton-si {
+  background-color: #ff4500;
+}
+
+.modal-boton-no {
+  background-color: #5f9ea0;
+}
+
+.modal-boton-si:hover {
+  background-color: #e23b00;
+}
+
+.modal-boton-no:hover {
+  background-color: #4682b4;
+}
+
+/* =========================
+   Sección: PÁGINA AR
+   ========================= */
