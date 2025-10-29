@@ -1,54 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- 1. ARQUITECTURA DE DATOS ---
     // Array de objetos que contiene todas las preguntas, opciones y respuestas correctas.
-    const questions =
-            correctAnswer: "Brasil"
-        },
+    const questions = [
         {
             question: "¿Quién es el máximo goleador en la historia de los Mundiales?",
-            choices:,
+            choices: ["Miroslav Klose", "Ronaldo Nazário", "Gerd Müller", "Just Fontaine"],
             correctAnswer: "Miroslav Klose"
         },
         {
-            question: "¿Qué países fueron campeones en 2014, 2018 y 2022, en ese orden?",
-            choices:,
-            correctAnswer: "Alemania, Francia, Argentina"
+            question: "¿Quién es el máximo goleador en la historia de los Mundiales?",
+            choices: ["Miroslav Klose", "Ronaldo Nazário", "Gerd Müller", "Just Fontaine"],
+            correctAnswer: "Miroslav Klose"
         },
-        {
-            question: "¿Quién fue el máximo goleador de la Copa del Mundo de 2018?",
-            choices:,
-            correctAnswer: "Harry Kane"
-        },
-        {
-            question: "¿Qué país es el único que ha participado en todas las ediciones de la Copa del Mundo?",
-            choices:,
-            correctAnswer: "Brasil"
-        },
-        {
-            question: "¿Quién marcó el gol más rápido en la historia de los Mundiales?",
-            choices:,
-            correctAnswer: "Hakan Şükür"
-        },
-        {
-            question: "¿Quién es el jugador de mayor edad en marcar un gol en un Mundial?",
-            choices:,
-            correctAnswer: "Roger Milla"
-        },
-        {
-            question: "¿Qué país fue el anfitrión y ganador de la primera Copa del Mundo en 1930?",
-            choices:,
-            correctAnswer: "Uruguay"
-        },
-        {
-            question: "¿Quién fue el máximo goleador de la Copa del Mundo de 2022 en Qatar?",
-            choices: ["Lionel Messi", "Julián Álvarez", "Olivier Giroud", "Kylian Mbappé"],
-            correctAnswer: "Kylian Mbappé"
-        },
-        {
-            question: "¿Qué país fue el campeón del mundo en 2010 en Sudáfrica?",
-            choices:,
-            correctAnswer: "España"
-        }
     ];
 
     // --- 2. VARIABLES DE ESTADO Y REFERENCIAS AL DOM ---
