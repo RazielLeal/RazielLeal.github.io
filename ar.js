@@ -33,513 +33,513 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre: "Luis Malagón",
         calificacion: 4,
-        imagen: "/mexico/luis-malagon.jpg" 
+        imagen: "/imagenes/mexico/luis-malagon.jpg" 
       },
       {
         nombre: "Jorge Sánchez",
         calificacion: 4,
-        imagen: "/mexico/jorge-sanchez.jpg"
+        imagen: "/imagenes/mexico/jorge-sanchez.jpg"
       },
       {
         nombre: "Cesar Montes",
         calificacion: 4,
-        imagen: "/mexico/cesar-montes.jpg"
+        imagen: "/imagenes/mexico/cesar-montes.jpg"
       },
       {
         nombre: "Johan Vásquez",
         calificacion: 4,
-        imagen: "/mexico/Johan-Vasquez.jpeg"
+        imagen: "/imagenes/mexico/Johan-Vasquez.jpeg"
       },
       {
         nombre: "Jesús Gallardo",
         calificacion: 4,
-        imagen: "/mexico/Jesus-Gallardo.jpg"
+        imagen: "/imagenes/mexico/Jesus-Gallardo.jpg"
       },
       {
         nombre: "Edson Álvarez",
         calificacion: 5,
-        imagen: "/mexico/Edson-Alvarez.jpg"        
+        imagen: "/imagenes/mexico/Edson-Alvarez.jpg"        
       },
       {
         nombre:"Orbelín Pineda",
         calificacion: 4,
-        imagen: "/mexico/Orbelin-Pineda.jpg"
+        imagen: "/imagenes/mexico/Orbelin-Pineda.jpg"
       },
       {
         nombre: "Luis Chávez",
         calificacion: 4,
-        imagen: "/mexico/Luis-Chavez.jpg"
+        imagen: "/imagenes/mexico/Luis-Chavez.jpg"
       },
       {
         nombre: "Hirving Lozano",
         calificacion: 4,
-        imagen: "/mexico/Hirving-Lozano.jpg"
+        imagen: "/imagenes/mexico/Hirving-Lozano.jpg"
       },
       {
         nombre: "Alexis Vega",
         calificacion: 4,
-        imagen: "/mexico/Alexis-Vega.jpg"
+        imagen: "/imagenes/mexico/Alexis-Vega.jpg"
       },
       {
         nombre: "Santiago Giménez",
         calificacion: 5,
-        imagen: "/mexico/gimenez.jpeg"
+        imagen: "/imagenes/mexico/gimenez.jpeg"
       }    
     ],
     "Argentina": [
       {
         nombre: "Emiliano Martínez",
         calificacion: 4,
-        imagen: "/argentina/emiliano-martinez.jpeg" 
+        imagen: "/imagenes/argentina/emiliano-martinez.jpeg" 
       },
       {
         nombre: "Nahuel Molina",
         calificacion: 4,
-        imagen: "/argentina/Nahuel-Molina.jpg"
+        imagen: "/imagenes/argentina/Nahuel-Molina.jpg"
       },
       {
         nombre: "Cristian Romero",
         calificacion: 4,
-        imagen: "/argentina/Cristian-Romero.png"
+        imagen: "/imagenes/argentina/Cristian-Romero.png"
       },
       {
         nombre: "Lisandro Martínez",
         calificacion: 4,
-        imagen: "/argentina/Lisandro-Martinez.jpg"
+        imagen: "/imagenes/argentina/Lisandro-Martinez.jpg"
       },
       {
         nombre: "Nicolás Tagliafico",
         calificacion: 4,
-        imagen: "/argentina/tagliafico.jpg"
+        imagen: "/imagenes/argentina/tagliafico.jpg"
       },
       {
         nombre: "Rodrigo De Paul",
         calificacion: 5,
-        imagen: "/argentina/depaul.jpg"        
+        imagen: "/imagenes/argentina/depaul.jpg"        
       },
       {
         nombre:"Enzo Fernández",
         calificacion: 4,
-        imagen: "/argentina/enzo.jpg"
+        imagen: "/imagenes/argentina/enzo.jpg"
       },
       {
         nombre: "Alexis Mac Allister",
         calificacion: 4,
-        imagen: "/argentina/alexis-mac-allister.jpg"
+        imagen: "/imagenes/argentina/alexis-mac-allister.jpg"
       },
       {
         nombre: "Lionel Messi",
         calificacion: 4,
-        imagen: "/argentina/messi.jpg"
+        imagen: "/imagenes/argentina/messi.jpg"
       },
       {
         nombre: "Lautaro Martínez",
         calificacion: 4,
-        imagen: "/argentina/lautaro.jpg"
+        imagen: "/imagenes/argentina/lautaro.jpg"
       },
       {
         nombre: "Julián Álvarez",
         calificacion: 5,
-        imagen: "/argentina/julian.jpg"
+        imagen: "/imagenes/argentina/julian.jpg"
       }    
     ],
     "Brasil": [
       {
-        nombre: "Ederson moraes",
+        nombre: "Ederson Moraes",
         calificacion: 88,
-        imagen: ""
+        imagen: "/imagenes/brasil/ederson.jpg"
       },
       {
-        nombre: "wesley França",
+        nombre: "Wesley França",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/brasil/wesley.jpg"
       },
       {
         nombre: "Eder Militão",
         calificacion: 86,
-        imagen: ""
+        imagen: "/imagenes/brasil/eder.jpg"
       },
       {
         nombre: "Gabriel Magalhães",
         calificacion: 87,
-        imagen: ""
+        imagen: "/imagenes/brasil/gabriel.jpg"
       },
       {
         nombre: "Caio Henrique",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/brasil/caio.jpg"
       },
       {
         nombre: "Bruno Guimarães",
         calificacion: 86,
-        imagen: ""
+        imagen: "/imagenes/brasil/bruno.jpeg"
       },
       {
         nombre: "Joelinton Cássio",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/brasil/joelinton.jpeg"
       },
       {
         nombre: "Lucas Paquetá",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/brasil/lucas.jpg"
       },
       {
         nombre: "Rodrygo Goes",
         calificacion: 86,
-        imagen: ""
+        imagen: "/imagenes/brasil/rodrygo.jpeg"
       },
       {
         nombre: "Vinicius Junior",
         calificacion: 90,
-        imagen: ""
+        imagen: "/imagenes/brasil/vinicius.jpg"
       },
       {
         nombre: "Richarlison de Andrade",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/brasil/richarlison.jpg"
       }
     ],
     "Uruguay": [
       {
         nombre: "Santiago Mele",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/uruguay/santiago.jpg"
       },
       {
-        nombre: "NahitanNández",
+        nombre: "Nahitan Nández",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/uruguay/nahitan.jpg"
       },
       {
         nombre: "Ronald Araújo",
         calificacion: 83,
-        imagen: ""
+        imagen: "/imagenes/uruguay/ronald.jpg"
       },
       {
         nombre: "Sebastián Cáceres",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/uruguay/sebastian.jpg"
       },
       {
         nombre: "Matías Viña",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/uruguay/matias.jpg"
       },
       {
         nombre: "Manuel Ugarte",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/uruguay/manuel.jpg"
       },
       {
         nombre: "Federico Valverde",
         calificacion: 89,
-        imagen: ""
+        imagen: "/imagenes/uruguay/federico.jpg"
       },
       {
         nombre: "Rodrigo Bentancur",
         calificacion: 80,
-        imagen: ""
+        imagen: "/imagenes/uruguay/rodrigo.jpg"
       },
       {
         nombre: "Brian Rodríguez",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/uruguay/brian.jpg"
       },
       {
         nombre: "Cristian Olivera",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/uruguay/cristian.jpg"
       },
       {
         nombre: "Darwin Núñez",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/uruguay/darwin.jpg"
       }
     ],
     "Ecuador": [
       {
         nombre: "Hernán Galíndez",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/ecuador/hernan.jpg"
       },
       {
         nombre: "Angelo Preciado",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/ecuador/angelo.jpg"
       },
       {
-        nombre: "William Pacho",
+        nombre: "Willian Pacho",
         calificacion: 80,
-        imagen: ""
+        imagen: "/imagenes/ecuador/willian.jpg"
       },
       {
         nombre: "Piero Hincapié",
         calificacion: 81,
-        imagen: ""
+        imagen: "/imagenes/ecuador/piero.jpg"
       },
       {
         nombre: "Pervis Estupiñan",
         calificacion: 80,
-        imagen: ""
+        imagen: "/imagenes/ecuador/pervis.jpg"
       },
       {
         nombre: "Alan Franco",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/ecuador/alan.jpg"
       },
       {
         nombre: "Moisés Caicedo",
         calificacion: 87,
-        imagen: ""
+        imagen: "/imagenes/ecuador/moises.jpg"
       },
       {
         nombre: "Kendry Paez",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/ecuador/kendry.jpeg"
       },
       {
-        nombre: "Gonzalo PLata",
+        nombre: "Gonzalo Plata",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/ecuador/gonzalo.jpg"
       },
       {
         nombre: "Enner Valencia",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/ecuador/enner.jpg"
       },
       {
         nombre: "Joel Ordoñez",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/ecuador/joel.jpg"
       }
     ],
     "Paraguay": [
       {
         nombre: "Roberto Fernández",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/paraguay/roberto.jpg"
       },
       {
         nombre: "Juan Cáceres",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/paraguay/juan.jpg"
       },
       {
         nombre: "Gustavo Gómez",
         calificacion: 81,
-        imagen: ""
+        imagen: "/imagenes/paraguay/gustavo.jpg"
       },
       {
         nombre: "Omar Alderete",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/paraguay/omar.jpg"
       },
       {
         nombre: "Júnior Alonso",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/paraguay/junior.jpg"
       },
       {
         nombre: "Andrés Cubas",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/paraguay/andres.jpg"
       },
       {
         nombre: "Diego Gómez",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/paraguay/diego.jpg"
       },
       {
         nombre: "Miguel Almirón",
         calificacion: 80,
-        imagen: ""
+        imagen: "/imagenes/paraguay/miguel.jpg"
       },
       {
         nombre: "Ramón Sosa",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/paraguay/ramon.jpg"
       },
       {
         nombre: "Antonio Sanabria",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/paraguay/antonio.jpg"
       },
       {
         nombre: "Ronaldo Martínez",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/paraguay/ronaldo.jpg"
       }
     ],
     "Estados Unidos": [
       {
         nombre: "Matt Freese",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/usa/matt.png"
       },
       {
         nombre: "Sergiño Dest",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/usa/sergino.jpg"
       },
       {
         nombre: "Chris Richards",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/usa/chris.png"
       },
       {
         nombre: "Tim Ream",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/usa/tim.jpg"
       },
       {
         nombre: "Antonee Robinson",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/usa/antonee.jpg"
       },
       {
         nombre: "Tyler Adams",
         calificacion: 83,
-        imagen: ""
+        imagen: "/imagenes/usa/tyler.jpg"
       },
       {
         nombre: "Weston McKennie",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/usa/weston.jpg"
       },
       {
         nombre: "Malik Tillman",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/usa/malik.jpg"
       },
       {
         nombre: "Timothy Weah",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/usa/timothy.png"
       },
       {
         nombre: "Christian Pulisic",
         calificacion: 84,
-        imagen: ""
+        imagen: "/imagenes/usa/christian.png"
       },
       {
         nombre: "Folarin Balogun",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/usa/folarin.png"
       }
     ],
     "Canada":[
       {
         nombre: "Dayne St. Clair",
         calificacion: 73,
-        imagen: "" 
+        imagen: "/imagenes/canada/dayne.png" 
       },
       {
         nombre: "Alistair Johnston",
         calificacion: 78,
-        imagen: "" 
+        imagen: "/imagenes/canada/alistair.png"
       },
       {
         nombre: "Möise Bombito",
         calificacion: 72,
-        imagen: "" 
+        imagen: "/imagenes/canada/moise.png"
       },
       {
         nombre: "Derek Cornelius",
         calificacion: 72,
-        imagen: "" 
+        imagen: "/imagenes/canada/derek.png"
       },
       {
         nombre: "Alphonso Davies",
         calificacion: 84,
-        imagen: "" 
+        imagen: "/imagenes/canada/alphonso.png"
       },
       {
         nombre: "Stephen Eustáquio",
         calificacion: 78,
-        imagen: "" 
+        imagen: "/imagenes/canada/stephen.png"
       },
       {
         nombre: "Ismaël Koné",
         calificacion: 74,
-        imagen: "" 
+        imagen: "/imagenes/canada/ismael.png"
       },
       {
         nombre: "Tajon Buchanan",
         calificacion: 77,
-        imagen: "" 
+        imagen: "/imagenes/canada/tajon.png"
       },
       {
         nombre: "Ali Ahmed",
         calificacion: 71,
-        imagen: "" 
+        imagen: "/imagenes/canada/ali.png"
       },
       {
         nombre: "Jonathan David",
         calificacion: 84,
-        imagen: "" 
+        imagen: "/imagenes/canada/jonathan.png"
       },
       {
         nombre: "Cyle Larin",
         calificacion: 77,
-        imagen: "" 
+        imagen: "/imagenes/canada/cyle.png"
       }
     ],
     "Nueva Zelanda": [
       {
         nombre:"Max Crocombe",
         calificacion: 70,
-        imagen: ""
+        imagen: "/imagenes/nz/max.png"
       },
       {
         nombre:"Tyler Bindon",
         calificacion: 68,
-        imagen: ""
+        imagen: "/imagenes/nz/tyler.png"
       },
       {
         nombre:"Michael Boxall",
         calificacion:69,
-        imagen: ""
+        imagen: "/imagenes/nz/michael.png"
       },
       {
         nombre: "Finn Surman",
         calificacion: 68,
-        imagen: ""
+        imagen: "/imagenes/nz/finn.png"
       },
       {
         nombre: "Liberato Cacace",
         calificacion:73,
-        imagen: ""
+        imagen: "/imagenes/nz/liberato.png"
       },
       {
         nombre: "Joe Bell",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/nz/joe.png"
       },
       {
         nombre: "Marko Stamenic",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/nz/marko.png"
       },
       {
         nombre: "Sarpreet Singh",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/nz/sarpreet.png"
       },
       {
         nombre:"Elijah Just",
         calificacion: 70,
-        imagen: ""
+        imagen: "/imagenes/nz/elijah.png"
       },
       {
         nombre:"Ben Waine",
         calificacion: 69,
-        imagen: ""
+        imagen: "/imagenes/nz/ben.png"
       },
       {
         nombre:"Chris Wood",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/nz/chris.png"
       }
 
     ],
@@ -547,57 +547,57 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre:"Alireza Beiranvand",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/iran/alireza.jpg"
       },
       {
         nombre:"Sadegh Moharrami",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/iran/sadegh.jpg"
       },
       {
         nombre: "Morteza Pouraliganji",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/iran/morteza.png"
       },
       {
         nombre: "Shoja Khalilzadeh",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/iran/shoja.jpg"
       },
       {
         nombre: "Milad Mohammadi",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/iran/milad.jpg"
       },
       {
         nombre: "Saeid Ezatolahi",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/iran/saeid.jpg"
       },
       {
         nombre: "Saman Ghoddos",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/iran/saman.png"
       },
       {
         nombre: "Alireza Jahanbakhsh",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/iran/alireza2.png"
       },
       {
         nombre: "Mehdi Ghaedi",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/iran/mehdi.jpg"
       },
       {
         nombre: "Sardar Azmoun",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/iran/sardar.png"
       },
       {
         nombre: "Mehdi Taremi",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/iran/mehdi2.png"
       }
 
     ],
@@ -605,57 +605,57 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre:"Utkir Yusupov",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/uzbe/utkir.png"
       },
       {
         nombre: "Khojiakbar Alijonov",
         calificacion: 70, 
-        imagen: ""
+        imagen: "/imagenes/uzbe/khojiakbar.png"
       },
       {
         nombre: "Abdukodir Khusanov",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/uzbe/abdukodir.png"
       },
       {
         nombre: "Rustam Ashurmatov",
         calificacion: 70,
-        imagen: ""
+        imagen: "/imagenes/uzbe/rustam.jpg"
       },
       {
-        nombre: "Farrukh SayFiev",
+        nombre: "Farrukh Sayfiev",
         calificacion:69,
-        imagen: ""
+        imagen: "/imagenes/uzbe/farrukh.png"
       },
       {
         nombre:"Otabek Shukurov",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/uzbe/otabek.png"
       },
       {
         nombre: "Odiljon Hamrobekov",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/uzbe/odiljon.jpg"
       },
       {
         nombre: "Abbosbek Fayzullaev",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/uzbe/abbosbek.png"
       },
       {
         nombre: "Oston Urunov",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/uzbe/oston.png"
       },
       {
         nombre: "Jaloliddin Masharipov",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/uzbe/jaloliddin.png"
       },
       {
         nombre: "Eldor Shomurodov",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/uzbe/eldor.png"
       }
       
     ],
@@ -663,57 +663,57 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre:"Kim Seung-gyu",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/coreasur/1.jpg"
       },
       {
         nombre: "Kim Moon-hwan",
         calificacion: 69,
-        imagen: ""
+        imagen: "/imagenes/coreasur/2.jpg"
       },
       {
         nombre: "Kim Min-jae",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/coreasur/3.png"
       },
       {
         nombre: "Kim Young-gwon",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/coreasur/4.png"
       },
       {
         nombre: "Lee Ki-je",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/coreasur/5.png"
       },
       {
         nombre: "Jung Woo-young",
         calificacion: 65,
-        imagen: ""
+        imagen: "/imagenes/coreasur/6.png"
       },
       {
         nombre: "Hwang In-beom",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/coreasur/7.png"
       },
       {
         nombre: "Lee Jae-sung",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/coreasur/8.png"
       },
       {
         nombre: "Lee Kang-in",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/coreasur/9.png"
       },
       {
         nombre: "Hwang Hee-chan",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/coreasur/10.png"
       },
       {
         nombre: "Son Heung-min",
         calificacion: 87,
-        imagen: ""
+        imagen: "/imagenes/coreasur/11.png"
       }
 
     ],
@@ -721,57 +721,57 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre:"Mathew Ryan",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/australia/1.png"
       },
       {
         nombre: "Nathaniel Atkinson",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/australia/2.png"
       },
       {
         nombre: "Harry Souttar",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/australia/3.png"
       },
       {
         nombre: "Kye Rowles",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/australia/4.png"
       },
       {
         nombre: "Jordan Bos",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/australia/5.png"
       },
       {
         nombre: "Jackson Irvine",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/australia/6.png"
       },
       {
         nombre: "Connor Metcalfe",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/australia/7.png"
       },
       {
         nombre: "Ajdin Hrustic",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/australia/8.png"
       },
       {
         nombre: "Martin Boyle",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/australia/9.png"
       },
       {
-        nombre: "Matthew Leckie",
+        nombre: "Mathew Leckie",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/australia/10.png"
       },
       {
         nombre: "Mitchell Duke",
         calificacion: 70,
-        imagen: ""
+        imagen: "/imagenes/australia/11.png"
       }
 
     ],
@@ -779,57 +779,57 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre:"Mohammed Al-Owais",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/arabia/1.png"
       },
       {
         nombre: "Saud Abdulhamid",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/arabia/2.png"
       },
       {
         nombre: "Hassan Tambakti",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/arabia/3.png"
       },
       {
         nombre: "Ali Al-Bulaihi",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/arabia/4.png"
       },
       {
         nombre: "Yasser Al-Shahrani",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/arabia/5.png"
       },
       {
         nombre: "Abdullah Al-Khaibari",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/arabia/6.png"
       },
       {
-        nombre: "Mohammed Kanno",
+        nombre: "Mohamed Kanno",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/arabia/7.png"
       },
       {
         nombre: "Salem Al-Dawsari",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/arabia/8.png"
       },
       {
         nombre: "Abdulrahman Ghareeb",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/arabia/9.png"
       },
       {
         nombre: "Saleh Al-Shehri",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/arabia/10.png"
       },
       {
         nombre: "Firas Al-Buraikan",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/arabia/11.png"
       }
 
     ],
@@ -837,57 +837,57 @@ document.addEventListener('DOMContentLoaded', () => {
       {
         nombre:"Mohamed El Shenawy",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/egipto/1.png"
       },
       {
         nombre:"Mohamed Hany",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/egipto/2.png"
       },
       {
-        nombre:"Ahmed Hegazi",
+        nombre:"Ahmed Hegazy",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/egipto/3.png"
       },
       {
         nombre:"Mohamed Abdelmonem",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/egipto/4.png"
       },
       {
         nombre:"Ahmed Fatouh",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/egipto/5.png"
       },
       {
         nombre:"Mohamed Elneny",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/egipto/6.png"
       },
       {
         nombre:"Emam Ashour",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/egipto/7.png"
       },
       {
         nombre:"Marwan Attia",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/egipto/8.png"
       },
       {
         nombre:"Mohamed Salah",
         calificacion: 90,
-        imagen: ""
+        imagen: "/imagenes/egipto/9.png"
       },
       {
         nombre:"Mahmoud Hassan",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/egipto/10.png"
       },
       {
         nombre:"Mostafa Mohamed",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/egipto/11.png"
       }
     ],
     "Cabo verde": [
