@@ -487,6 +487,7 @@ body {
   /* La propiedad transform se actualiza para la animación */
   transition: opacity 0.5s ease, transform 0.5s ease; 
   pointer-events: none;
+  z-index: 400;
 }
 
 /* Clase para mostrar la tarjeta */
@@ -531,7 +532,7 @@ body {
   font-size: 2vh;
 }
 
-/* --- Estilos para Controles y Modal de Filtros --- */
+/* --- Estilos para Controles --- */
 
 /* Contenedor para los botones de la esquina */
 .top-left-controls {
@@ -542,6 +543,23 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px; /* Espacio entre botones */
+}
+
+/* Estilo genérico para los botones de control en la esquina */
+.control-btn {
+    background-color: var(--fondo_containers);
+    color: white;
+    border-radius: 50%; /* Círculo perfecto */
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    backdrop-filter: blur(5px);
+    border: none;
+    box-shadow: 0 4px 8px var(--containers_sombra);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Estilo de los botones de la esquina */

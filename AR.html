@@ -90,6 +90,13 @@
       <p id="nombre-pais"></p>
     </div>
 
+    <div class="top-left-controls">
+      <button id="play-pause-btn" class="control-btn">
+        <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+        <svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+      </button>    
+    </div>
+    
     <div id="player-card" class="hidden">
       <img id="player-image" src="" alt="Foto del Jugador" />
       <div id="player-data">
@@ -106,83 +113,100 @@
       device-orientation-permission-ui="enabled: false"
     >
       <a-assets>
-        <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
-        <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item>
-        <a-asset-item id="canada" src="canada.glb"></a-asset-item>
+        <!-- <a-asset-item id="bearModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/bear/scene.gltf"></a-asset-item>
+        <a-asset-item id="raccoonModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/band-example/raccoon/scene.gltf"></a-asset-item> -->
+        <a-asset-item id="usa" src="/modelos/usa.glb"></a-asset-item>
+        <a-asset-item id="mexico" src="/modelos/mexico.glb"></a-asset-item>
+        <a-asset-item id="canada" src="/modelos/canada.glb"></a-asset-item>
+        <a-asset-item id="nz" src="/modelos/nz.glb"></a-asset-item>
+        <a-asset-item id="iran" src="/modelos/iran.glb"></a-asset-item>
+        <a-asset-item id="argentina" src="/modelos/argentina.glb"></a-asset-item>
+        <a-asset-item id="uzbekistan" src="/modelos/uzbekistan.glb"></a-asset-item>
+        <a-asset-item id="coreasur" src="/modelos/coreadelsur.glb"></a-asset-item>
+        <a-asset-item id="egipto" src="/modelos/egipto.glb"></a-asset-item>
+        <a-asset-item id="australia" src="/modelos/australia.glb"></a-asset-item>
+        <a-asset-item id="brasil" src="/modelos/brazil.glb"></a-asset-item>
+        <a-asset-item id="ecuador" src="/modelos/ecuador.glb"></a-asset-item>
+        <a-asset-item id="uruguay" src="/modelos/uruguay.glb"></a-asset-item>
+        <a-asset-item id="caboverde" src="/modelos/caboverde.glb"></a-asset-item>
+        <a-asset-item id="paraguay" src="/modelos/paraguay.glb"></a-asset-item>
+        <a-asset-item id="tunez" src="/modelos/tunez.glb"></a-asset-item>
+        <a-asset-item id="argelia" src="/modelos/argelia.glb"></a-asset-item>
+        <a-asset-item id="arabiasaudita" src="/modelos/arabiasaudita.glb"></a-asset-item>
       </a-assets>
 
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <!-- USA -->
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-gltf-model rotation="0 -90 0 " position="-0.2 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#usa" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Mexico -->
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#mexico" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Canada -->
       <a-entity mindar-image-target="targetIndex: 2">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#canada" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#canada" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Nueva Zelanda -->
        <a-entity mindar-image-target="targetIndex: 3">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#nz" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Iran -->
        <a-entity mindar-image-target="targetIndex: 4">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#iran" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Argentina -->
        <a-entity mindar-image-target="targetIndex: 5">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#argentina" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Uzbekistan -->
        <a-entity mindar-image-target="targetIndex: 6">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#uzbekistan" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Corea del Sur -->
        <a-entity mindar-image-target="targetIndex: 7">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#coreasur" animation-mixer></a-gltf-model>
       </a-entity>
-      <!-- Jordania -->
+      <!-- Egipto -->
        <a-entity mindar-image-target="targetIndex: 8">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#egipto" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Australia -->
       <a-entity mindar-image-target="targetIndex: 9">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#australia" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Brasil -->
       <a-entity mindar-image-target="targetIndex: 10">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#brasil" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Ecuador -->
       <a-entity mindar-image-target="targetIndex: 11">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#bearModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#ecuador" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Uruguay -->
       <a-entity mindar-image-target="targetIndex: 12">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#uruguay" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Cabo Verde -->
       <a-entity mindar-image-target="targetIndex: 13">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#caboverde" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Paraguay -->
       <a-entity mindar-image-target="targetIndex: 14">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#paraguay" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Tunez -->
       <a-entity mindar-image-target="targetIndex: 15">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#tunez" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Argelia -->
       <a-entity mindar-image-target="targetIndex: 16">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#argelia" animation-mixer></a-gltf-model>
       </a-entity>
       <!-- Arabia Saudita -->
       <a-entity mindar-image-target="targetIndex: 17">
-        <a-gltf-model rotation="0 0 0 " position="0 -0.25 0" scale="0.05 0.05 0.05" src="#raccoonModel" animation-mixer></a-gltf-model>
+        <a-gltf-model rotation="0 270 0 " position="0 -1 0" scale="0.6 0.6 0.6" src="#arabiasaudita" animation-mixer></a-gltf-model>
       </a-entity>
     </a-scene>    
   <script src="ar.js"></script>
