@@ -27,6 +27,29 @@ document.addEventListener('DOMContentLoaded', () => {
     "Arabia Saudita"   // targetIndex: 17
   ];
 
+  // --- NUEVO: Array con las rutas de los modelos ---
+  // El orden DEBE coincidir con el de nombresPaises y targets.mind
+  const rutasModelos = [
+    "/modelos/usa.glb",          // targetIndex: 0
+    "/modelos/mexico.glb",       // targetIndex: 1
+    "/modelos/canada.glb",       // targetIndex: 2
+    "/modelos/nz.glb",           // targetIndex: 3
+    "/modelos/iran.glb",         // targetIndex: 4
+    "/modelos/argentina.glb",    // targetIndex: 5
+    "/modelos/uzbekistan.glb",   // targetIndex: 6
+    "/modelos/coreadelsur.glb",  // targetIndex: 7
+    "/modelos/egipto.glb",       // targetIndex: 8
+    "/modelos/australia.glb",    // targetIndex: 9
+    "/modelos/brazil.glb",       // targetIndex: 10
+    "/modelos/ecuador.glb",      // targetIndex: 11
+    "/modelos/uruguay.glb",      // targetIndex: 12
+    "/modelos/caboverde.glb",    // targetIndex: 13
+    "/modelos/paraguay.glb",     // targetIndex: 14
+    "/modelos/tunez.glb",        // targetIndex: 15
+    "/modelos/argelia.glb",      // targetIndex: 16
+    "/modelos/arabiasaudita.glb" // targetIndex: 17
+  ];
+
   // --- CÓDIGO NUEVO: Base de Datos de Jugadores ---
   const jugadoresPorPais = {
     "Mexico": [
@@ -1106,8 +1129,16 @@ document.addEventListener('DOMContentLoaded', () => {
     countryNameEl.textContent = nombreDelPais;
     countryUi.classList.add('show');
 
+    // --- Carga dinámica del modelo ---
+    const modelEntity = event.target.querySelector('a-gltf-model');
+    const rutaDelModelo = rutasModelos[targetIndex];
+    
+    // Asignamos la ruta del modelo solo cuando se encuentra el target.
+    // Esto iniciará la descarga del modelo en ese momento.
+    modelEntity.setAttribute('src', rutaDelModelo);
+
     // ==================================================================
-    // AQUÍ ESTÁ LA CORRECCIÓN PRINCIPAL: LÓGICA DEL CARRUSEL
+    // LÓGICA DEL CARRUSEL
     // ==================================================================
     
     // 1. Detener cualquier carrusel que se estuviera ejecutando antes.
@@ -1140,6 +1171,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('💨 Target perdido. Ocultando UI y deteniendo carrusel.');
     countryUi.classList.remove('show');
     playerCard.classList.remove('show');
+
+    // --- NUEVO: Opcional pero recomendado ---
+    // Al perder el target, quitamos el modelo para liberar memoria.
+    // La próxima vez que se vea, se volverá a cargar.
+    const modelEntity = event.target.querySelector('a-gltf-model');
+    modelEntity.removeAttribute('src');
     
     // Esto detiene el temporizador para que no siga ejecutándose en segundo plano.
     clearInterval(carruselIntervalo);
