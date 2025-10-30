@@ -1145,4 +1145,47 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(carruselIntervalo);
   });
   
+
+  //DETENER Y REPRODUCIR ANIMACIÓN
+  // --- Elementos del DOM para el botón de Play/Pause ---
+  const playPauseBtn = document.getElementById('play-pause-btn');
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+
+  let animationsPlaying = true; // Estado inicial: las animaciones están reproduciéndose
+
+  // Función para alternar los iconos del botón
+  const togglePlayPauseIcons = () => {
+    if (animationsPlaying) {
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'block';
+    } else {
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+    }
+  };
+
+  // Función para controlar las animaciones de todos los modelos GLTF
+  const controlAllModelAnimations = (play) => {
+    const gltfModels = document.querySelectorAll('a-gltf-model');
+    gltfModels.forEach(model => {
+      if (model.components['animation-mixer']) {
+        if (play) {
+          model.components['animation-mixer'].play();
+        } else {
+          model.components['animation-mixer'].pause();
+        }
+      }
+    });
+  };
+
+  // Inicializar el estado del botón al cargar la página
+  togglePlayPauseIcons();
+
+  // Event listener para el botón de Play/Pause
+  playPauseBtn.addEventListener('click', () => {
+    animationsPlaying = !animationsPlaying; // Invertir el estado
+    togglePlayPauseIcons(); // Actualizar los iconos
+    controlAllModelAnimations(animationsPlaying); // Controlar las animaciones de todos los modelos activos
+  });
 });
