@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let jugadorActualIndex = 0;
   let carruselIntervalo = null;
-  const TIEMPO_POR_JUGADOR = 3000; // 3000 ms = 3 segundos
+  const TIEMPO_POR_JUGADOR = 2000;
 
   const nombresPaises = [
     "Estados Unidos",  // targetIndex: 0
@@ -1062,8 +1062,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     ]
   };
-  // ---------------------------------------------
-
+  
   // --- Seleccionar elementos del DOM ---
   const sceneEl = document.querySelector('a-scene');
   const countryUi = document.querySelector('#nombre-pais-ui');
@@ -1072,10 +1071,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const playerNameEl = document.querySelector('#player-name');
   const playerImageEl = document.querySelector('#player-image');
   const playerRatingEl = document.querySelector('#player-rating');
-  // ----------------------------------------------------
+  
 
   // --- Verificar que todos los elementos existen ---
-  if (!sceneEl || !countryUi || !countryNameEl || !playerCard) { // <-- Añadimos playerCard a la verificación
+  if (!sceneEl || !countryUi || !countryNameEl || !playerCard) { 
     console.error('❌ ¡ERROR! Falta uno o más elementos esenciales en el HTML.');
     return;
   }
@@ -1137,21 +1136,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // sceneEl.addEventListener('targetLost', event => {
-  //   console.log('💨 Target perdido. Ocultando UI.');
-  //   countryUi.classList.remove('show');
-    
-  //   // --- CÓDIGO NUEVO: Ocultar también la tarjeta ---
-  //   playerCard.classList.remove('show');
-  //   // ---------------------------------------------
-  // });
-
   sceneEl.addEventListener('targetLost', event => {
     console.log('💨 Target perdido. Ocultando UI y deteniendo carrusel.');
     countryUi.classList.remove('show');
     playerCard.classList.remove('show');
     
-    // --- ¡MUY IMPORTANTE! DETENER EL CARRUSEL ---
     // Esto detiene el temporizador para que no siga ejecutándose en segundo plano.
     clearInterval(carruselIntervalo);
   });
