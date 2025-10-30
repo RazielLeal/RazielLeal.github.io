@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MundiGol</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="imagen-fondo-superior"></div>
+    <div class="imagen-fondo-inferior"></div>
+    <div class="container-videos">
+        <h1 class="titulo-videos">Videos</h1>
+        <div class="video-grid">
+            <div class="video-item">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/6JHNZq2ig8I?si=o_gs9T2k9ZbIAFkH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/OrrjrTWdPTY?si=stF_UpMC2bvkprdc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/8QcInbQugVQ?si=FYEiiAl7DPIZWcJe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="video-item">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Ar4LrKcwh3w?si=G_9_cb5YU8v-0tGx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+        
+    </div>
+
+    <a href="#" class="boton-cerrar">×</a>
+    <div id="modal-cerrar" class="modal-overlay">
+        <div class="modal-contenido">
+            <p>¿Deseas salir?</p>
+            <div class="modal-botones">
+              <a href="index.html" class="modal-boton-si">Sí</a>
+              <button class="modal-boton-no">No</button>
+            </div>
+        </div>
+    </div>    
+    
+    <div class="top-left-controls">
+        <button id="filters-btn">Filtros</button>
+    </div>
+
+    <div id="filters-modal" class="modal-hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Filtros de Cámara</h2>
+                    <button id="close-modal-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <button class="filter-option" data-filter="none">Normal</button>
+                    <button class="filter-option" data-filter="grayscale(100%)">Blanco y Negro</button>
+                    <button class="filter-option" data-filter="sepia(100%)">Sepia</button>
+                    <button class="filter-option" data-filter="invert(100%)">Invertir</button>
+                    <button class="filter-option" data-filter="saturate(2)">Saturado</button>
+                </div>
+            </div>
+        </div>
+    </div>  
+
+    <script>
+        // Obtener los elementos del DOM
+        const botonCerrar = document.querySelector('.boton-cerrar');
+        const modal = document.getElementById('modal-cerrar');
+        const botonNo = document.querySelector('.modal-boton-no');
+
+        // Función para mostrar el modal
+        function mostrarModal() {
+            modal.classList.add('show');
+        }
+
+        // Función para ocultar el modal
+        function ocultarModal() {
+            modal.classList.remove('show');
+        }
+
+        // Eventos de click
+        botonCerrar.addEventListener('click', mostrarModal);
+        botonNo.addEventListener('click', ocultarModal);
+
+        // ---------------------------------------------
+        // MODAL DE FILTROS
+        // ---------------------------------------------
+
+        // 1. Seleccionar los nuevos elementos
+        const filtersBtn = document.querySelector('#filters-btn');
+        const filtersModal = document.querySelector('#filters-modal');
+        const closeModalBtn = document.querySelector('#close-modal-btn');
+        const filterOptions = document.querySelectorAll('.filter-option');
+        const aScene = document.querySelector('a-scene');
+
+        // 2. Abrir el modal
+        filtersBtn.addEventListener('click', () => {
+            filtersModal.classList.add('modal-visible');
+            filtersModal.classList.remove('modal-hidden'); // Opcional, dependiendo del CSS
+        });
+
+        // 3. Cerrar el modal
+        const closeModal = () => {
+            filtersModal.classList.remove('modal-visible');
+            filtersModal.classList.add('modal-hidden'); // Opcional
+        };
+
+        closeModalBtn.addEventListener('click', closeModal);
+        filtersModal.addEventListener('click', (event) => {
+            // Cierra el modal solo si se hace clic en el fondo (overlay)
+            if (event.target === filtersModal) {
+            closeModal();
+            }
+        });
+
+        // 4. Aplicar un filtro
+        filterOptions.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterValue = button.dataset.filter; // Obtiene el valor del filtro del atributo data-filter
+                const videoIframes = document.querySelectorAll('.video-item iframe'); // Selecciona todos los iframes de video
+
+                videoIframes.forEach(iframe => {
+                    iframe.style.filter = filterValue; // Aplica el filtro a cada iframe
+                });
+                closeModal(); // Cierra el modal después de seleccionar un filtro
+            });
+        });
+
+    </script>
+    
+  </body>
+</html>

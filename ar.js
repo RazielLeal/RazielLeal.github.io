@@ -1145,47 +1145,4 @@ document.addEventListener('DOMContentLoaded', () => {
     clearInterval(carruselIntervalo);
   });
   
-  // ---------------------------------------------
-  // MODAL DE FILTROS
-  // ---------------------------------------------
-
-  // 1. Seleccionar los nuevos elementos
-  const filtersBtn = document.querySelector('#filters-btn');
-  const filtersModal = document.querySelector('#filters-modal');
-  const closeModalBtn = document.querySelector('#close-modal-btn');
-  const filterOptions = document.querySelectorAll('.filter-option');
-  const aScene = document.querySelector('a-scene');
-
-  // 2. Abrir el modal
-  filtersBtn.addEventListener('click', () => {
-    filtersModal.classList.add('modal-visible');
-    filtersModal.classList.remove('modal-hidden'); // Opcional, dependiendo del CSS
-  });
-
-  // 3. Cerrar el modal
-  const closeModal = () => {
-    filtersModal.classList.remove('modal-visible');
-    filtersModal.classList.add('modal-hidden'); // Opcional
-  };
-
-  closeModalBtn.addEventListener('click', closeModal);
-  filtersModal.addEventListener('click', (event) => {
-    // Cierra el modal solo si se hace clic en el fondo (overlay)
-    if (event.target === filtersModal) {
-      closeModal();
-    }
-  });
-
-  // 4. Aplicar un filtro
-  filterOptions.forEach(button => {
-    button.addEventListener('click', () => {
-      const filterValue = button.dataset.filter;
-      console.log(`Aplicando filtro: ${filterValue}`);
-      
-      // Aplicamos el filtro directamente al canvas de A-Frame
-      aScene.canvas.style.filter = filterValue;
-      
-      closeModal(); // Cierra el modal después de seleccionar un filtro
-    });
-  });
 });

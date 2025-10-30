@@ -5,34 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MundiGol | Trivia</title>
     <link rel="stylesheet" href="style.css" />
-
-    <style>
-      #example-scanning-overlay{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: transparent;
-        z-index: 2;
-
-      }
-      @media (min-aspect-ratio: 1/1) {
-        #example-scanning-overlay .inner {
-        width: 50vh;
-        height: 50vh;
-        }
-      }
-      @media (max-aspect-ratio: 1/1) {
-        #example-scanning-overlay .inner {
-        width: 80vw;
-        height: 80vw;
-        }
-      }       
-    </style>
   </head>
   <body>
     <div class="imagen-fondo-superior"></div>
@@ -57,27 +29,28 @@
 
         <div class="trivia-container">
             <div class="pregunta-container">
-            <p class="pregunta">¿Quién ganó la Copa del Mundo en 2022?</p>
-            </div>
+              <p class="pregunta"></p>
+              </div>
             <div class="respuestas-container">
-            <a href="#" class="respuesta-boton">a) Brasil</a>
-            <a href="#" class="respuesta-boton">b) Argentina</a>
-            <a href="#" class="respuesta-boton">c) Francia</a>
+              <a href="#" class="respuesta-boton"></a>
+              <a href="#" class="respuesta-boton"></a>
+              <a href="#" class="respuesta-boton"></a>
             </div>
         </div>
+        
         </div>
         <a href="#" class="boton-saltar">Saltar</a>
         <a href="#" class="boton-cerrar">×</a>
 
         <div id="modal-cerrar" class="modal-overlay">
-        <div class="modal-contenido">
+          <div class="modal-contenido">
             <p>¿Deseas salir?</p>
             <div class="modal-botones">
-                <a href="index.html" class="modal-boton-si">Sí</a>
-                <button class="modal-boton-no">No</button>
+              <a href="index.html" class="modal-boton-si">Sí</a>
+              <button class="modal-boton-no">No</button>
             </div>
+          </div>
         </div>
-    </div>
 
     <script>
         // Obtener los elementos del DOM
@@ -99,6 +72,6 @@
         botonCerrar.addEventListener('click', mostrarModal);
         botonNo.addEventListener('click', ocultarModal);
     </script>
-    <script src="script.js"></script>
+    <script src="trivia.js"></script>
   </body>
 </html>
