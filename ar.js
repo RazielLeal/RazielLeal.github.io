@@ -892,173 +892,173 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
     "Cabo verde": [
       {
-        nombre:"Vozinha Dias",
+        nombre:"Vozinha Diaz",
         calificacion: 70,
-        imagen: ""
+        imagen: "/imagenes/cabo/1.png"
       },
       {
         nombre:"Willy Semedo",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/cabo/2.png"
       },
       {
         nombre:"Logan Costa",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/cabo/3.png"
       },
       {
         nombre:"Roberto Lopes",
         calificacion: 69,
-        imagen: ""
+        imagen: "/imagenes/cabo/4.png"
       },
       {
         nombre:"João Paulo",
         calificacion: 70,
-        imagen: ""
+        imagen: "/imagenes/cabo/5.png"
       },
       {
         nombre:"Kevin Pina",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/cabo/6.png"
       },
       {
         nombre:"Jamiro Monteiro",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/cabo/7.png"
       },
       {
         nombre:"Deroy Duarte",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/cabo/8.png"
       },
       {
         nombre:"Ryan Mendes",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/cabo/9.png"
       },
       {
         nombre:"Garry Rodrigues",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/cabo/10.png"
       },
       {
         nombre:"Bebé Correia",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/cabo/11.png"
       }
     ],
     "Tunez": [
       {
         nombre:"Aymen Dahmen",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/tunez/1.png"
       },
       {
         nombre:"Wajdi Kechrida",
         calificacion: 72,
-        imagen: ""
+        imagen: "/imagenes/tunez/2.png"
       },
       {
         nombre:"Montassar Talbi",
         calificacion: 77,
-        imagen: ""
+        imagen: "/imagenes/tunez/3.png"
       },
       {
         nombre:"Yassine Meriah",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/tunez/4.png"
       },
       {
         nombre:"Ali Abdi",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/tunez/5.png"
       },
       {
         nombre:"Ellyes Skhiri",
         calificacion: 82,
-        imagen: ""
+        imagen: "/imagenes/tunez/6.png"
       },
       {
         nombre:"Aïssa Laïdouni",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/tunez/7.png"
       },
       {
         nombre:"Anis Ben Slimane",
         calificacion: 73,
-        imagen: ""
+        imagen: "/imagenes/tunez/8.png"
       },
       {
         nombre:"Elias Achouri",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/tunez/9.png"
       },
       {
         nombre:"Naïm Sliti",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/tunez/10.png"
       },
       {
         nombre:"Seifeddine Jaziri",
         calificacion: 71,
-        imagen: ""
+        imagen: "/imagenes/tunez/11.png"
       }
     ],
     "Argelia": [
       {
         nombre:"Anthony Mandrea",
         calificacion: 74,
-        imagen: ""
+        imagen: "/imagenes/argelia/1.png"
       },
       {
         nombre: "Youcef Atal",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/argelia/2.png"
       },
       {
         nombre: "Ramy Bensebaini",
         calificacion: 79,
-        imagen: ""
+        imagen: "/imagenes/argelia/3.png"
       },
       {
         nombre: "Aïssa Mandi",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/argelia/4.png"
       },
       {
         nombre: "Rayan Aït-Nouri",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/argelia/5.png"
       },
       {
         nombre: "Nabil Bentaleb",
         calificacion: 75,
-        imagen: ""
+        imagen: "/imagenes/argelia/6.png"
       },
       {
         nombre: "Ismaël Bennacer", 
         calificacion: 83,
-        imagen: ""
+        imagen: "/imagenes/argelia/7.png"
       },
       {
         nombre: "Houssem Aouar",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/argelia/8.png"
       },
       {
         nombre: "Riyad Mahrez",
         calificacion: 85,
-        imagen: ""
+        imagen: "/imagenes/argelia/9.png"
       },
       {
         nombre: "Saïd Benrahma",
         calificacion: 78,
-        imagen: ""
+        imagen: "/imagenes/argelia/10.png"
       },
       {
         nombre: "Islam Slimani",
         calificacion: 76,
-        imagen: ""
+        imagen: "/imagenes/argelia/11.png"
       }
     ]
   };
