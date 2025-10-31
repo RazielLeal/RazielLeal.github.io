@@ -1132,9 +1132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Carga dinámica del modelo ---
     const modelEntity = event.target.querySelector('a-gltf-model');
     const rutaDelModelo = rutasModelos[targetIndex];
-    
-    // Asignamos la ruta del modelo solo cuando se encuentra el target.
-    // Esto iniciará la descarga del modelo en ese momento.
     modelEntity.setAttribute('src', rutaDelModelo);
 
     // ==================================================================

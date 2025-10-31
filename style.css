@@ -379,6 +379,7 @@ body {
 }
 
 .modal-contenido {
+    position: relative; /* Establece el contexto de posicionamiento para hijos absolutos */
     background-color: var(--fondo_container_plano);
     padding: 30px;
     border-radius: 15px;
@@ -524,6 +525,64 @@ body {
   font-family: 'MiFuenteDeportiva', sans-serif; /* Usa tu fuente personalizada */
   font-size: 2.5vh;
   text-transform: uppercase;
+}
+/* --- Estilos para el modal de ayuda --- */
+.modal-ayuda-contenido {
+  display: flex; /* Usamos flexbox para controlar el layout interno */
+  flex-direction: column; /* Apilamos el header y el body verticalmente */
+  max-height: 85vh; /* Altura máxima del modal, 85% de la altura de la pantalla */
+  text-align: left; /* Alinea el texto a la izquierda */
+  color: var(--letras-amarillas);
+}
+
+.modal-ayuda-contenido .modal-body {
+  overflow-y: auto; /* Añade scroll vertical SOLO si el contenido excede el espacio */
+  padding-right: 15px; /* Evita que el scroll se pegue al texto */
+}
+
+.modal-ayuda-contenido .modal-body p {
+  margin-top: 0;
+  font-size: 2.5vh;
+  font-weight: lighter; /* Reduce el grosor de la fuente */
+}
+
+.modal-ayuda-contenido .modal-body ol {
+  padding-left: 25px; /* Añade un poco de espacio a la lista */
+  font-size: 2.2vh;
+  font-weight: lighter; /* Reduce el grosor de la fuente */
+}
+
+.modal-ayuda-contenido .modal-body li {
+  margin-bottom: 10px; /* Espacio entre cada instrucción */
+}
+
+.close-modal-btn {
+  font-size: 28px;
+}
+
+/* Estilo para el botón de cerrar del modal de ayuda, basado en .boton-cerrar */
+.boton-cerrar-modal {
+  position: absolute;
+  top: 15px; /* Ajustado para el padding del modal */
+  right: 15px; /* Ajustado para el padding del modal */
+  width: 40px; /* Ligeramente más pequeño para el modal */
+  height: 40px;
+  background-color: var(--rojo);
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 40px; /* Coincide con la altura */
+  font-size: 2em; /* Tamaño de la 'x' */
+  text-decoration: none;
+  box-shadow: 0 4px 8px var(--containers_sombra);
+  z-index: 15; /* Por encima del contenido del modal */
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  cursor: pointer; /* Asegura que se vea como un botón */
+}
+
+.boton-cerrar-modal:hover {
+  background-color: var(--rojo); /* Puedes oscurecerlo si tienes una variable */
+  transform: scale(1.1);
 }
 
 /* Contenedor de las estrellas */

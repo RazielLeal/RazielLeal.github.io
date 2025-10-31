@@ -18,9 +18,57 @@
         </div>
     </div>
     <a href="#" class="boton-ayuda">?</a>
+
+    <div id="modal-ayuda" class="modal-overlay">
+      <div class="modal-contenido modal-ayuda-contenido">
+          <div class="modal-header">
+              <h2>Instrucciones</h2>
+              <a href="#" id="cerrar-modal-ayuda" class="boton-cerrar-modal">×</a>
+          </div>
+          <div class="modal-body">
+              <p><strong>Modo AR:</strong></p>
+              <ol>
+                <li>Selecciona el modo AR en la página principal.</li>
+                <li>Espera que cargue el escaner</li>
+                <li>Escanea una bandera</li>
+              </ol>
+              <p><strong>Trivia:</strong></p>
+              <ol>
+                <li>Selecciona el modo Trivia en la página principal.</li>
+                <li>Responda las preguntas</li>
+                <li>Puedes saltar la pregunta dando click al botón "Saltar"</li>
+                <li>Para salir del modo Trivia da click en la tacha roja en la parte superior</li>
+              </ol>
+              <p><strong>Videos:</strong></p>
+              <ol>
+                <li>Selecciona el modo videos en la página principal.</li>
+                <li>Puedes seleccionar el video que desees ver</li>
+                <li>Puedes agregar un filtro de color a todos los videos desde el boton de filtros en la parte superior izquierda</li>
+                <li>Selecciona un filtro</li>
+                <li>Para salir del modo videos da click en la tacha roja en la parte superior</li>
+              </ol>
+
+          </div>
+      </div>
+    </div>
   </body>
 
   <script>
   // alert("Esta es una pagina actualmente en desarrollo");
+
+  // --- LÓGICA PARA EL MODAL DE AYUDA ---
+  const botonAyuda = document.querySelector('.boton-ayuda');
+  const modalAyuda = document.getElementById('modal-ayuda');
+  const cerrarModalAyuda = document.getElementById('cerrar-modal-ayuda');
+
+  botonAyuda.addEventListener('click', (e) => {
+    e.preventDefault(); // Evita que el enlace '#' navegue
+    e.preventDefault(); // Evita que el enlace '#' navegue
+    modalAyuda.classList.add('show');
+  });
+
+  cerrarModalAyuda.addEventListener('click', () => {
+    modalAyuda.classList.remove('show');
+  });
   </script>
 </html>
