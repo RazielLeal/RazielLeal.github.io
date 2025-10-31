@@ -303,11 +303,6 @@ body {
   transition: background-color 0.3s;
 }
 
-.respuesta-boton:hover {
-  background-color: var(--fondo_containers_hover);
-}
-
-
 /* Estilos para el nuevo botón "Saltar" (estado normal) */
 .boton-saltar {
   position: absolute;
